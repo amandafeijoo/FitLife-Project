@@ -34,6 +34,7 @@ Las principales características y funcionalidades de la página web incluirán:
 5. Entrenamiento de fuerza con Javier: una clase diseñada para desarrollar la fuerza muscular y la resistencia, utilizando una variedad de ejercicios con pesas, maquinas y el propio peso corporal. Con un enfoque en la técnica adecuada y la progresión gradual, esta clase es adecuada para personas de todos los niveles y condición física.
 
 • Comunicación efectiva: herramientas de comunicación efectiva, como formularios de contacto.
+
 • Gestión de la base de datos: utilizando Python, la página web será capaz de gestionar efectivamente la base de datos de los clientes, permitiendo operaciones de creación, lectura, actualización y eliminación de datos de manera segura y confiable.  
 
 
