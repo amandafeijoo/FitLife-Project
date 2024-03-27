@@ -10,11 +10,19 @@ import Contacto from './Components/Contacto';
 import Footer from './Components/Footer';
 import Instructores from './Components/Instructores';
 import Clases from './Components/Clases';
+import { createGlobalStyle } from 'styled-components';
 
+
+const GlobalStyle = createGlobalStyle`
+    body {
+        background-color: rgba(244, 189, 150, 0.691); // Reemplaza #yourColor con el color que desees
+    }
+`;
 
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <div className="App">
         <Header />
         <Routes>

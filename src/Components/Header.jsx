@@ -44,6 +44,7 @@ function Header() {
         <Menu.Item key="2" onClick={() => navigate('/Acerca/Clases')}>
           Clases
         </Menu.Item>
+
       </Menu>
     );
   
@@ -52,11 +53,12 @@ function Header() {
         <h1>FitLife Gym</h1>
         <StyledNav>
           <StyledLink to="/Inicio">Inicio</StyledLink>
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              Acerca
-            </a>
-          </Dropdown>
+          <StyledLink to="/Acerca">Acerca</StyledLink>
+<Dropdown overlay={menu}>
+  <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+     <DownOutlined />
+  </a>
+</Dropdown>
           <StyledLink to="/Horarios">Horarios</StyledLink>
           <StyledLink to="/Precios">Precios</StyledLink>
           <StyledLink to="/Registro">Registro</StyledLink>
