@@ -1,9 +1,9 @@
 # FitLife
 
 Integrantes del proyecto :
-Amanda Cristina Flores Feijóo
-Marina López Monterde
-Alejandro Rivas Bustos
+Amanda Cristina Flores Feijóo,
+Marina López Monterde,
+Alejandro Rivas Bustos,
 Alejandro Rodriguez Hernández
 
 
@@ -27,11 +27,11 @@ Las principales características y funcionalidades de la página web incluirán:
 
 2.  Pilates clásico con Marta: na clase que se enfoca en fortalecer el núcleo, mejorar la postura y la alineación corporal, y aumentar la flexibilidad y el equilibrio. Utiliza una combinación de ejercicios de bajo impacto y controlados, centrados en la respiración y la activación de los músculos profundos para desarrollar una base sólida y prevenir lesiones. 
 
-3. Yoga dinámico con Laura: una clase que combina posturas fluidas con la respiración consciente y el flujo de movimiento para mejorar la fuerza, la flexibilidad y la concentración. Esta práctica de yoga dinámico es energizante y revitalizante, adecuada para todos los niveles de habilidad y experiencia.
+3. Yoga con Laura: una clase que combina posturas fluidas con la respiración consciente y el flujo de movimiento para mejorar la fuerza, la flexibilidad y la concentración. Esta práctica de yoga dinámico es energizante y revitalizante, adecuada para todos los niveles de habilidad y experiencia.
 
-4. Boxeo con Diego:  una clase que combina técnicas de boxeo con ejercicios aeróbicos de alta intensidad para mejorar la resistencia cardiovascular, la coordinación y la fuerza muscular. Con música motivadora y rutinas dinámicas, esta clase es una excelente manera de liberar tensiones y quemar calorías.
+4. Boxeo con Diego y Javier:  una clase que combina técnicas de boxeo con ejercicios aeróbicos de alta intensidad para mejorar la resistencia cardiovascular, la coordinación y la fuerza muscular. Con música motivadora y rutinas dinámicas, esta clase es una excelente manera de liberar tensiones y quemar calorías.
 
-5. Entrenamiento de fuerza con Javier: una clase diseñada para desarrollar la fuerza muscular y la resistencia, utilizando una variedad de ejercicios con pesas, maquinas y el propio peso corporal. Con un enfoque en la técnica adecuada y la progresión gradual, esta clase es adecuada para personas de todos los niveles y condición física.
+5. Entrenamiento de fuerza con Natalia: una clase diseñada para desarrollar la fuerza muscular y la resistencia, utilizando una variedad de ejercicios con pesas, maquinas y el propio peso corporal. Con un enfoque en la técnica adecuada y la progresión gradual, esta clase es adecuada para personas de todos los niveles y condición física.
 
 • Comunicación efectiva: herramientas de comunicación efectiva, como formularios de contacto.
 
