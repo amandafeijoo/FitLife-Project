@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Carousel } from 'react-responsive-carousel';
 import { createGlobalStyle } from 'styled-components';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Acerca from './Acerca';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -35,7 +36,7 @@ const CarouselSlide = styled.div`
 const StyledImg = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 5px 5px 5px #333;
   transition: transform 0.5s;
@@ -67,9 +68,8 @@ const CarouselText = styled.p`
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   text-align: center;
-  font-size: 2em;
+  font-size: 10em;
 `;
-
 
 const StyledCarousel = styled(Carousel)`
     width: 100%; // Cambia esto para ajustar el tamaño del carrusel
@@ -110,6 +110,28 @@ const StyledCarousel = styled(Carousel)`
     }
     
 `;
+
+
+const StyledButton = styled.button`
+  position: absolute;
+  bottom: 100px;
+  left: 80%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  font-size: 1.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color:rgba(236, 158, 158, 0.691);
+  }
+`;
+
+
 function Inicio() {
     return (
         <> 
@@ -120,18 +142,21 @@ function Inicio() {
         <StyledCarousel autoPlay infiniteLoop>
           <div>
             <img src="/Imagen1.jpg" alt="Imagen 1" />
-            <CarouselText>MI ESTILO DE VIDA</CarouselText>
+            <CarouselText>FITLIFE</CarouselText>
+            <StyledButton>REGISTRESE AHORA</StyledButton> {/* Aquí está tu nuevo botón */}
           </div>
-          <div>
+          {/* <div>
             <img src="/Imagen2.jpg" alt="Imagen 2" />
-            <CarouselText>  NUESTRAS INSTALACIONES</CarouselText>
-          </div>
-          <div>
-            <img src="https://via.placeholder.com/200" alt="Imagen 3" />
+            <CarouselText>  MI ESTILO DE VIDA</CarouselText>
+          </div> */}
+          {/* <div>
+            <img src="Imagen3.jpg" alt="Imagen 3" />
             <CarouselText>Texto para la imagen 3</CarouselText>
-          </div>
+          </div> */}
         </StyledCarousel>
       </StyledSection>
+      <Acerca />
+
     </>
     );
   }
