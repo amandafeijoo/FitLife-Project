@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { createGlobalStyle } from 'styled-components';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Acerca from './Acerca';
+import Horarios from './Horarios';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -156,6 +157,7 @@ function Inicio() {
         </StyledCarousel>
       </StyledSection>
       <Acerca />
+      <Horarios />
 
     </>
     );

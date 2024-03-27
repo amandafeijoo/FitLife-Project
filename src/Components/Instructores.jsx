@@ -74,7 +74,7 @@ export default function Instructores() {
                         width="333"
                     />
                     <Title>MARTHA</Title>
-                    <Text>Pilates, Yoga</Text>
+                    <Text>Pilates</Text>
                 </div>
             </Card>
 
@@ -146,7 +146,7 @@ export default function Instructores() {
                         width="333"
                     />
                     <Title>LAURA</Title>
-                    <Text>Yoga, Pilates</Text>
+                    <Text>Yoga</Text>
                 </div>
             </Card>
 

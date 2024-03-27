@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {Menu, Dropdown} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import Clases from './Clases';
-import Instructores from './Instructores';
+
 
 const StyledHeader = styled.header`
   padding: 20px;
