@@ -11,14 +11,14 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: monospace; // Agrega tu fuente aquí
-  font-size: 1.5em; // Agrega tu tamaño de fuente aquí
-  color: #333; // Agrega tu color aquí
+  font-family: monospace;
+  font-size: 1.5em; 
+  color: #333; 
 `;
 
 const StyledLink = styled(Link)`
   color: inherit;
-  text-decoration: none; // Esto elimina la línea debajo de los enlaces
+  text-decoration: none; 
 
   &:hover {
     color:  rgba(236, 158, 158, 0.691); // Cambia el color al pasar el mouse
@@ -58,9 +58,8 @@ function Header() {
      <DownOutlined />
   </a>
 </Dropdown>
-          <StyledLink to="/Horarios">Horarios</StyledLink>
           <StyledLink to="/Precios">Precios</StyledLink>
-          <StyledLink to="/Registro">Registro</StyledLink>
+          <StyledLink to="/InciarSesion">Inciar Sesión</StyledLink>
           <StyledLink to="/Contacto">Contacto</StyledLink>
         </StyledNav>
       </StyledHeader>

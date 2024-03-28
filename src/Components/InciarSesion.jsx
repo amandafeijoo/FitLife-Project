@@ -1,6 +1,6 @@
 import React from "react";
 
-function Registro() {
+function InciarSesion() {
     return (
         <section>
         <h2>Registro</h2>
@@ -8,4 +8,4 @@ function Registro() {
         </section>
     );
     }
-export default Registro;
+export default InciarSesion;

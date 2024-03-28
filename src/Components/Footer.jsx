@@ -29,7 +29,7 @@ const FooterSection = styled.div`
 `;
 
 const SocialMediaLogo = styled.img`
-  width: 30px; // Puedes ajustar esto para cambiar el tamaño del logo
+  width: 30px; 
   margin: 10px;
 `;
 

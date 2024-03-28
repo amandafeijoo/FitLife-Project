@@ -3,14 +3,19 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
 import Inicio from './Components/Inicio';
 import Acerca from './Components/Acerca';
-import Horarios from './Components/Horarios';
 import Precios from './Components/Precios';
-import Registro from './Components/Registro';
+import IniciarSesion from './Components/InciarSesion';
 import Contacto from './Components/Contacto';
 import Footer from './Components/Footer';
 import Instructores from './Components/Instructores';
 import Clases from './Components/Clases';
+import Mision from './Components/Mision';
+import Yoga from './Components/Yoga';
 import { createGlobalStyle } from 'styled-components';
+import Fuerza from './Components/Fuerza';
+import Pilates from './Components/Pilates';
+import Boxeo from './Components/Boxeo';
+import Cardio from './Cardio';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -30,9 +35,14 @@ function App() {
           <Route path="/Acerca" element={<Acerca/>} />
           <Route path="/Acerca/Instructores" element={<Instructores />} />
           <Route path="/Acerca/Clases" element={<Clases />} />
-          <Route path="/Horarios" element={<Horarios />} />
+          <Route path="/Yoga" element={<Yoga/>} />
+          <Route path="/Fuerza" element={<Fuerza />} />
+          <Route path="/Pilates" element={<Pilates />} />
+          <Route path="/Boxeo" element={<Boxeo />} />
+          <Route path="/Cardio" element={<Cardio />} />
+          <Route path="/Acerca/Mision" element={<Mision />} />
           <Route path="/Precios" element={<Precios />} />
-          <Route path="/Registro" element={<Registro />} />
+          <Route path="/InciarSesion" element={<IniciarSesion />} />
           <Route path="/Contacto" element={<Contacto />} />
         </Routes>
         <Footer />

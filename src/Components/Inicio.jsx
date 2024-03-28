@@ -4,11 +4,11 @@ import { Carousel } from 'react-responsive-carousel';
 import { createGlobalStyle } from 'styled-components';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Acerca from './Acerca';
-import Horarios from './Horarios';
+
 
 const GlobalStyle = createGlobalStyle`
     body {
-        background-color: rgba(244, 189, 150, 0.691); // Reemplaza #yourColor con el color que desees
+        background-color: rgba(244, 189, 150, 0.691); 
     }
 `;
 
@@ -157,7 +157,7 @@ function Inicio() {
         </StyledCarousel>
       </StyledSection>
       <Acerca />
-      <Horarios />
+      
 
     </>
     );

@@ -41,27 +41,34 @@ const ImageContainer = styled.div`
   transition: opacity 0.3s ease-in-out;
 `;
 
+
+
+
 function Clases() {
-    const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
 
-    const clases = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
+  const clases = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
 
+  
     return (
         <section>
-        <ul>
-            {clases.map(clase => (
-            <StyledLi key={clase}>
-                <StyledLink 
-                    to={`/${clase.toLowerCase()}`} 
-                    onMouseOver={() => setImage(`/images/${clase.toLowerCase()}.jpg`)}
-                    onMouseOut={() => setImage(null)}
-                >
-                    {clase}
-                    <ImageContainer style={{backgroundImage: `url(${image})`}} />
-                </StyledLink>
-            </StyledLi>
-            ))}
-        </ul>
+            <ul>
+                {clases.map((clase, index) => (
+                    <StyledLi key={clase}>
+                        <StyledLink 
+                            to={{
+                                pathname: `/${clase.toLowerCase()}`,
+                                state: { claseIndex: index }
+                            }} 
+                            onMouseOver={() => setImage(`/images/${clase.toLowerCase()}.jpg`)}
+                            onMouseOut={() => setImage(null)}
+                        >
+                            {clase}
+                            <ImageContainer style={{backgroundImage: `url(${image})`}} />
+                        </StyledLink>
+                    </StyledLi>
+                ))}
+            </ul>
         </section>
     );
 }

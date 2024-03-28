@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 
 const InstagramLogoImg = styled.img`
-  width: 50px; // Puedes ajustar esto para cambiar el tamaño del logo
+  width: 50px; 
   height: 50px;
     margin: 10px;
     transition: transform 0.5s;
