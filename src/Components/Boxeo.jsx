@@ -18,7 +18,7 @@ const TextContainer = styled.div`
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     background-color:  rgba(246, 169, 76, 0.691);
-    color: #333;
+    color: #7b7979; 
     font-size: 1.5em;
     font-family: monospace;
     text-align: center;
@@ -29,9 +29,11 @@ const TextContainer = styled.div`
     height: 500px;
 `;
 const StyledH1 = styled.h1`
-    text-align: center;
-    font-size: 5em; 
-    font-family: monospace;
+  text-align: center;
+  font-size: 5em; 
+  font-family: monospace;
+  color: #7b7979;
+  margin: 20px;
 `;
 
 const ImageContainer = styled.div`
@@ -61,7 +63,38 @@ const Card = styled.div`
     transform: translateY(-10px);
   }
 `;
+const InfoCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  margin: 20px;
+  background-color:rgba(250, 193, 122, 0.691);
+  border-radius: 10px;
+  border: 1px solid #969595;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 80%; // ajustar el tamaño de la tarjeta aquí
+  text-align: center; 
+  font-size: 1em; 
+  font-family: monospace;
+  color: #7b7979; 
+  transition: 0.3s;
 
+  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
+  &:hover {
+    transform: translateY(-10px);
+  }
+`;
+
+
+const InfoCardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+
+`;
 const StyledImg = styled.img`
     width: 100%;
     height: 100%;
@@ -113,6 +146,25 @@ function Boxeo () {
         </StyledLink>
     </ButtonWrapper>
 </ButtonContainer>
+
+<InfoCardContainer>
+        <InfoCard>
+          <h2>Horario de las clases</h2>
+          <p>Lunes: 12:00 - 13:00 PM (Intermedia)
+            <br />
+            Martes: 18:00 - 19:00  (Principiantes)
+            <br />
+            Miércoles: 17:30 - 18:30  (Alta Intensidad)
+            <br />
+            Jueves: 18:00 - 19:00 PM (Avanzado)
+            <br />
+            Viernes: 17:30 - 18:30 PM (Para Todos los Niveles)
+            <br />
+            Sábado: 12:00 - 13:00 PM (Entrenamiento en Circuito)</p>
+          <h2>Instructores</h2>
+          <p>Las clases de yoga son impartidas por los instructores Diego y Javier.</p>
+        </InfoCard>
+      </InfoCardContainer>
       <GridContainer>
         <Card>
           <TextContainer>
