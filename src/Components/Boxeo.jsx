@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);// 2 columnas con el mismo ancho
     gap: 20px;
     padding: 20px;
 `;
@@ -111,24 +111,19 @@ const ButtonContainer = styled.div`
     justify-content: center;
     margin: 20px;
 `;
-
 const StyledButton = styled.button`
-    display: block;
-    margin:  auto;
-    justify-content: center;
-    font-size: 1.2em;
-    margin: 1em;
-    padding: 0.70em 1em;
-    border: 2px solid palevioletred;
-    border-radius: 3px;
-    color: palevioletred;
-    background-color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    &:hover {
-        background-color: palevioletred;
-        color: white;
-    }
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fa8484;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f77;
+  }
 `;
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -141,7 +136,7 @@ function Boxeo () {
       <StyledH1>BOXEO</StyledH1>
       <ButtonContainer>
     <ButtonWrapper>
-        <StyledLink to="/reserva">
+    <StyledLink to="/ReservarClases/ReservarClaseBoxeo">
             <StyledButton>Reservar Clase</StyledButton>
         </StyledLink>
     </ButtonWrapper>

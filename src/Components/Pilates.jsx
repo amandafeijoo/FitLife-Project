@@ -115,22 +115,18 @@ const ButtonContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-    display: block;
-    margin:  auto;
-    justify-content: center;
-    font-size: 1.2em;
-    margin: 1em;
-    padding: 0.70em 1em;
-    border: 2px solid palevioletred;
-    border-radius: 3px;
-    color: palevioletred;
-    background-color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    &:hover {
-        background-color: palevioletred;
-        color: white;
-    }
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fa8484;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f77;
+  }
 `;
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -143,7 +139,7 @@ function Pilates() {
       <StyledH1>PILATES</StyledH1>
       <ButtonContainer>
     <ButtonWrapper>
-        <StyledLink to="/reserva">
+    <StyledLink to="/ReservarClases/ReservarClasePilates">
             <StyledButton>Reservar Clase</StyledButton>
         </StyledLink>
     </ButtonWrapper>

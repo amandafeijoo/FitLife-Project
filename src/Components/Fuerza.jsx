@@ -141,7 +141,7 @@ function Fuerza() {
       <StyledH1>FUERZA</StyledH1>
       <ButtonContainer>
     <ButtonWrapper>
-        <StyledLink to="/reserva">
+    <StyledLink to="/ReservarClases/ReservarClaseFuerza">
             <StyledButton>Reservar Clase</StyledButton>
         </StyledLink>
     </ButtonWrapper>

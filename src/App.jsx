@@ -16,6 +16,11 @@ import Fuerza from './Components/Fuerza';
 import Pilates from './Components/Pilates';
 import Boxeo from './Components/Boxeo';
 import Cardio from './Cardio';
+import ReservarClaseYoga from './Components/ReservarClases/ReservarClaseYoga';
+import ReservarClaseFuerza from './Components/ReservarClases/ReservarClaseFuerza';
+import ReservarClasePilates from './Components/ReservarClases/ReservarClasePilates';
+import ReservarClaseBoxeo from './Components/ReservarClases/ReservarClaseBoxeo';
+import ReservarClaseCardio from './Components/ReservarClases/ReservarClaseCardio';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -41,6 +46,11 @@ function App() {
           <Route path="/Boxeo" element={<Boxeo />} />
           <Route path="/Cardio" element={<Cardio />} />
           <Route path="/Acerca/Mision" element={<Mision />} />
+          <Route path="/ReservarClases/ReservarClaseYoga" element={<ReservarClaseYoga />} />
+          <Route path="/ReservarClases/ReservarClaseFuerza" element={<ReservarClaseFuerza />} />
+          <Route path="/ReservarClases/ReservarClasePilates" element={<ReservarClasePilates />} />
+          <Route path="/ReservarClases/ReservarClaseBoxeo" element={<ReservarClaseBoxeo />} />
+          <Route path="/ReservarClases/ReservarClaseCardio" element={<ReservarClaseCardio />} />
           <Route path="/Precios" element={<Precios />} />
           <Route path="/InciarSesion" element={<IniciarSesion />} />
           <Route path="/Contacto" element={<Contacto />} />
