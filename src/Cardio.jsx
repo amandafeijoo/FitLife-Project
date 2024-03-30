@@ -1,105 +1,78 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+const TopContainer = styled.div`
+    position: relative;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px;
     padding: 20px;
 `;
 
+const BackgroundImage = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
+    box-shadow: 5px 5px 5px #333;
+    
+`;
 
-const TextContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const TextContainerInside = styled.div`
+    position: absolute;
+    color: white;
+    text-align: center;
     padding: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color:  rgba(246, 169, 76, 0.691);
-    color: #7b7979;
     font-size: 1.5em;
     font-family: monospace;
+    z-index: 1;`;
+
+const TextContainerBelow = styled.div`
+    color: black;
     text-align: center;
-    /* line-height: 1.5;
-    letter-spacing: 1px; */
-    text-transform: uppercase;
-    width: 500px;
-    height: 500px;
+    padding: 20px;
+    font-size: 1.2em;
+    font-family: monospace;
+    background: rgba(125, 147, 236, 0.4);
+
 `;
+
+
 const StyledH1 = styled.h1`
   text-align: center;
-  font-size: 5em; 
-  font-family: monospace;
-  color: #7b7979;
-  margin: 20px;
-`;
-
-const ImageContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 500px;
-    height: 500px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-
-`;
-
-const Card = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
-`;
-const InfoCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  margin: 20px;
-  background-color:rgba(250, 193, 122, 0.691);
-  border-radius: 10px;
-  border: 1px solid #969595;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  width: 80%; // ajustar el tamaño de la tarjeta aquí
-  text-align: center; 
-  font-size: 1em; 
-  font-family: monospace;
-  color: #7b7979; 
-  transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
+  font-size: 7em;    
+  color: #1e1e1f;
+   margin: 20px;
+   font-family: 'monospace';
 `;
 
 
-const InfoCardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-
-`;
 const StyledImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
 `;
+
+const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(31, 30, 30, 0.5); // Ajusta el último valor para cambiar la opacidad
+`;
+
 
 const ButtonWrapper = styled.div`
     display: flex;
@@ -116,22 +89,31 @@ const StyledButton = styled.button`
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  background-color: #fa8484;
+  background-color: #fc5f5f;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f77;
+    background-color: #639ceb;
   }
 `;
+
 const StyledLink = styled(Link)`
     text-decoration: none;
 `;
-
-
+const images = ["cardio1.jpg", "cardio3.jpg"];
 function Cardio() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((currentImageIndex + 1) % images.length);
+    }, 5000); // Cambia la imagen cada 5 segundos
+
+    return () => clearInterval(timer); // Limpia el intervalo cuando el componente se desmonta
+  }, [currentImageIndex]);
   return (
     <div>
       <StyledH1>CARDIO</StyledH1>
@@ -142,61 +124,26 @@ function Cardio() {
         </StyledLink>
     </ButtonWrapper>
     </ButtonContainer>
-
-    <InfoCardContainer>
-        <InfoCard>
+    <TopContainer>
+        <BackgroundImage src={images[currentImageIndex]} alt="Boxeo" />
+        <Overlay />
+        <TextContainerInside>
           <h2>Horario de las clases</h2>
-          <p>Lunes: 7:00 - 8:00 PM (Intenso)
+          <p>Lunes: 19:00 - 20:00 
             <br />
-            Miércoles: 12:00 - 13:00 PM (Y Tonificación)
+            Miércoles: 12:00 - 13:00
             <br />
-            Domingo: 11:30 AM - 12:30 PM (Kickboxing)
-             9:00 - 10:00 AM (Dance)</p>
-          <h2>Instructores</h2>
-          <p>Las clases de yoga son impartidas por la instructora Andrea.</p>
-        </InfoCard>
-      </InfoCardContainer>
-      <GridContainer>
-        <Card>
-          <TextContainer>
-            <p>Quema de Calorías y Pérdida de Peso:
-                El entrenamiento cardiovascular es altamente efectivo para quemar calorías y perder peso. Las clases de cardio en FitLife ofrecen una combinación de ejercicios de alta intensidad y de bajo impacto que ayudan a acelerar el metabolismo y a quemar una gran cantidad de calorías durante y después del ejercicio.</p>
-            </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/cardio1.jpg" alt="Yoga 1" />
-          </ImageContainer>
-        </Card>
-        <Card>
-          <TextContainer>
-            <p>Mejora de la Salud Cardiovascular:
-                Las clases de cardio en FitLife están diseñadas para elevar la frecuencia cardíaca y mejorar la salud del corazón. Los ejercicios aeróbicos como correr, saltar y bailar ayudan a fortalecer el músculo cardíaco y a mejorar la circulación sanguínea, lo que reduce el riesgo de enfermedades cardíacas y accidentes cerebrovasculares.</p>
-            </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/cardio2.jpg" alt="Yoga 2" />
-          </ImageContainer>
-        </Card>
-        <Card>
-          <TextContainer>
-            <p>Aumento de la Resistencia y la Energía:
-                El cardio ayuda a mejorar la resistencia cardiovascular y la capacidad pulmonar, lo que significa que puedes realizar actividades físicas durante más tiempo sin fatigarte. Participar en clases de cardio regularmente en FitLife te ayudará a aumentar tu resistencia y energía en la vida cotidiana.</p>
-            </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/cardio3.jpg" alt="Yoga 3" />
-          </ImageContainer>
-        </Card>
-      </GridContainer>
-        <ButtonWrapper>
-            <StyledLink to="/reserva">
-                <StyledButton>Reservar Clase</StyledButton>
-        </StyledLink>
-    </ButtonWrapper>
-    </div>
+            Domingo: 11:30 AM - 12:30 / 9:00 - 10:00 </p>
+            </TextContainerInside>
+      </TopContainer>
+      <TextContainerBelow>
+      <h2>Instructores</h2>
+      <p>Las clases de Cardio son impartidas por la instructora Andrea.</p>
+          <h2>Beneficios</h2>
+          <p>El entrenamiento cardiovascular es altamente efectivo para quemar calorías y perder peso. Las clases de cardio en FitLife ofrecen una combinación de ejercicios de alta intensidad y de bajo impacto que ayudan a acelerar el metabolismo y a quemar una gran cantidad de calorías durante y después del ejercicio.</p>
+        </TextContainerBelow>
+          </div>
+   
   );
 }
 

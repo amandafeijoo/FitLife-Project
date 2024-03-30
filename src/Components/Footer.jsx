@@ -1,13 +1,13 @@
 import React from "react";
 import styled from 'styled-components';
-import InstagramLogo from "./InstagramLogo.jsx"; // Replace "InstagramLogo" with "instagramLogo" to match the actual file name
+import SocialMediaLogos from './SocialMediaLogos';
 
 const FooterContainer = styled.footer`
   display: flex;
   justify-content: space-between;
   padding: 20px;
   background-color: #333;
-  color: rgba(246, 169, 76, 0.691);
+  color: rgba(244, 242, 241, 0.691);
     font-family: 'monospace';
     flex-direction: row;
     font-size: 1em;
@@ -28,10 +28,6 @@ const FooterSection = styled.div`
   // Aquí puedes agregar estilos para cada sección del footer
 `;
 
-const SocialMediaLogo = styled.img`
-  width: 30px; 
-  margin: 10px;
-`;
 
 function Footer() {
     return (
@@ -52,9 +48,7 @@ function Footer() {
                 <h2>Otras Informaciones</h2>
                 <p>Horario de apertura: 6:00 - 22:00</p>
             </FooterSection>
-            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                <InstagramLogo /> {/* Aquí está tu logo de Instagram */}
-            </a>        
+                <SocialMediaLogos /> {/* Coloca los iconos aquí */}  
             <p>© 2024 FitLife Gym</p>
         </FooterContainer>
 

@@ -9,10 +9,11 @@ const Grid = styled.main`
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
+    height: 100%;
     padding: 0 1rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    background-color:rgba(246, 169, 76, 0.691) ;
+    background-color: rgba(145, 196, 246, 0.691);
     @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
     }
@@ -28,19 +29,22 @@ const Grid = styled.main`
 `;
     
 const Card = styled.div`
-    background-color:rgba(236, 158, 158, 0.691) ;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+    background-color:rgba(249, 62, 62, 0.691) ;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
 
   /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
 `;
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 50%;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 `;
@@ -48,13 +52,13 @@ const Image = styled.img`
 const Title = styled.h2`
     font-size: 1.5em;
     text-align: center;
-  color: #b36d84;
+  color: #dcc2cb;
 `;
 
 const Text = styled.p`
   font-size: 1.2em;
   text-align: center;
-  color: #6f6a63;
+  color: #d8cbb8;
 `;
 
 export default function Instructores() {
@@ -74,7 +78,7 @@ export default function Instructores() {
                         width="333"
                     />
                     <Title>MARTHA</Title>
-                    <Text>Pilates</Text>
+                    <Text>Pilates, Yoga</Text>
                 </div>
             </Card>
 
@@ -146,7 +150,7 @@ export default function Instructores() {
                         width="333"
                     />
                     <Title>LAURA</Title>
-                    <Text>Yoga</Text>
+                    <Text>Yoga, Pilates</Text>
                 </div>
             </Card>
 
@@ -164,7 +168,7 @@ export default function Instructores() {
                         width="333"
                     />
                     <Title>DIEGO</Title>
-                    <Text>Boxeo</Text>
+                    <Text>Boxeo, Fuerza</Text>
                 </div>
             </Card>
         </Grid>

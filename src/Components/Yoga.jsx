@@ -1,108 +1,79 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-
-const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+const TopContainer = styled.div`
+    position: relative;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px;
     padding: 20px;
 `;
 
-
-const TextContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+const BackgroundImage = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
     border-radius: 10px;
-    background-color:  rgba(246, 169, 76, 0.691);
-    color: #7b7979;
+    box-shadow: 5px 5px 5px #333;
+    
+`;
+
+const TextContainerInside = styled.div`
+    position: absolute;
+    color: white;
+    text-align: center;
+    padding: 20px;
     font-size: 1.5em;
     font-family: monospace;
+    z-index: 1;`;
+
+const TextContainerBelow = styled.div`
+    color: black;
     text-align: center;
-    /* line-height: 1.5;
-    letter-spacing: 1px; */
-    text-transform: uppercase;
-    width: 500px;
-    height: 500px;
+    padding: 20px;
+    font-size: 1.2em;
+    font-family: monospace;
+    background: rgba(247, 137, 137, 0.4);
+
 `;
+
+
 const StyledH1 = styled.h1`
   text-align: center;
-  font-size: 5em; 
-  font-family: monospace;
-  color: #7b7979;
-  margin: 20px;
+  font-size: 7em;    
+  color: #1e1e1f;
+   margin: 20px;
+   font-family: 'monospace';
 `;
 
-const ImageContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    overflow: hidden; 
-    width: 500px;
-    height: 500px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-
-`;
-
-const Card = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
-`;
-
-const InfoCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  margin: 20px;
-  background-color:rgba(250, 193, 122, 0.691);
-  border-radius: 10px;
-  border: 1px solid #969595;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  width: 80%; // ajustar el tamaño de la tarjeta aquí
-  text-align: center; 
-  font-size: 1em; 
-  font-family: monospace;
-  color: #7b7979; 
-  transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
-`;
-
-
-const InfoCardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-
-`;
 
 const StyledImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
 `;
+
+const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(31, 30, 30, 0.5); // Ajusta el último valor para cambiar la opacidad
+`;
+
 
 const ButtonWrapper = styled.div`
     display: flex;
@@ -119,14 +90,14 @@ const StyledButton = styled.button`
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  background-color: #fa8484;
+  background-color: #fc5f5f;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f77;
+    background-color: #639ceb;
   }
 `;
 
@@ -134,11 +105,21 @@ const StyledLink = styled(Link)`
     text-decoration: none;
 `;
 
-
+const images = ["yoga1.jpg", "yoga3.jpg"]; // Reemplaza con las rutas a tus imágenes
 function Yoga() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((currentImageIndex + 1) % images.length);
+    }, 5000); // Cambia la imagen cada 5 segundos
+
+    return () => clearInterval(timer); // Limpia el intervalo cuando el componente se desmonta
+  }, [currentImageIndex]);
+
   return (
     <div>
-      <StyledH1>Yoga</StyledH1>
+      <StyledH1>Yoga </StyledH1>
       <ButtonContainer>
         <ButtonWrapper>
           <StyledLink to="/ReservarClases/ReservarClaseYoga">
@@ -146,64 +127,38 @@ function Yoga() {
           </StyledLink>
         </ButtonWrapper>
       </ButtonContainer>
+      <TopContainer>
+        <BackgroundImage src={images[currentImageIndex]} alt="Yoga" />
+        <Overlay />
+        <TextContainerInside>
+          <h3>Horario de las clases</h3>
+          <p>Lunes: 7:00 - 8:00 / 19:00 - 20:00 
+            <br />
+            Martes: 10:00 - 11:00 
+            <br />
+            Miércoles: 7:00 - 8:00  
+            <br />
+            Jueves: 19:30 - 20:30
+            <br />
+            Viernes: 12:00 - 13:00 
+            <br />
+            Sábado: 10:30 - 11:30
+            <br />
+            Domingo: 10:00 - 11:00</p>
+        </TextContainerInside>
+      </TopContainer>
 
-      <InfoCardContainer>
-        <InfoCard>
-          <h2>Horario de las clases</h2>
-          <p>Lunes: 7:00 - 8:00 AM (Matutino) 
-            <br />
-            19:00 - 20:00 (Suave y Meditación)
-            <br />
-            Martes: 10:00 - 11:00 AM (Restaurativo)
-            <br />
-            Miércoles: 7:00 - 8:00 AM (Dinámico)
-            <br />
-            Jueves: 19:30 - 20:30(Para la Flexibilidad)
-            <br />
-            Viernes: 12:00 - 13:00 PM (En el Almuerzo)
-            <br />
-            Sábado: 10:30 - 11:30 AM (Al Aire Libre)
-            <br />
-            Domingo: 10:00 - 11:00 AM (Relajación y Estiramiento)</p>
-          <h2>Instructores</h2>
-          <p>Las clases de yoga son impartidas por los instructores Marta y Laura.</p>
-        </InfoCard>
-      </InfoCardContainer>
+      <TextContainerBelow>
+        <h2>Instructores</h2>
+        <p>Las clases de yoga son impartidas por los instructores Marta y Laura.</p>
+        <h2>Beneficios</h2>
+        <p>En FitLife, creemos en abordar el bienestar de manera integral, y el yoga es una herramienta poderosa para lograrlo. Además de los beneficios físicos, el yoga también puede ayudar a mejorar el bienestar emocional, espiritual y social, promoviendo una sensación general de salud y felicidad.</p>
+      </TextContainerBelow>
 
-      <GridContainer>
-        <Card>
-          <TextContainer>
-            <p>El yoga ofrece una oportunidad para encontrar paz y serenidad en medio del ajetreo diario. A través de la práctica de posturas, respiración consciente y meditación, nuestros miembros pueden aprender a manejar el estrés y encontrar un equilibrio mental y emocional.</p>
-          </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/yoga1.jpg" alt="Yoga 1" />
-          </ImageContainer>
-        </Card>
-        <Card>
-          <TextContainer>
-            <p>El yoga es una práctica holística que involucra tanto el cuerpo como la mente. Al sincronizar el movimiento con la respiración y cultivar la atención plena, nuestros miembros pueden experimentar una mayor sensación de conexión mente-cuerpo y vivir con más conciencia en el momento presente.</p>
-          </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/yoga2.jpg" alt="Yoga 2" />
-          </ImageContainer>
-        </Card>
-        <Card>
-          <TextContainer>
-            <p>En FitLife, creemos en abordar el bienestar de manera integral, y el yoga es una herramienta poderosa para lograrlo. Además de los beneficios físicos, el yoga también puede ayudar a mejorar el bienestar emocional, espiritual y social, promoviendo una sensación general de salud y felicidad.</p>
-          </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/yoga3.jpg" alt="Yoga 3" />
-          </ImageContainer>
-        </Card>
-      </GridContainer>
-      </div>
+    
+    </div>
   );
 }
+
 
 export default Yoga;

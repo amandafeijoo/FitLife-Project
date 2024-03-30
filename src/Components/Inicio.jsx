@@ -8,15 +8,18 @@ import Acerca from './Acerca';
 
 const GlobalStyle = createGlobalStyle`
     body {
-        background-color: rgba(244, 189, 150, 0.691); 
+        background-color: rgba(56, 55, 54, 0.691); 
     }
 `;
 
 const StyledSection = styled.section`
   padding: 20px;
-  background-color: rgba(246, 169, 76, 0.691);
+  background-color: rgba(145, 196, 246, 0.691); 
   color: #333;
   font-family: 'Arial', sans-serif;
+  width: 100%;
+  height: 60%;
+
 `;
 
 const StyledH2 = styled.h2`
@@ -57,8 +60,6 @@ const StyledImg = styled.img`
     @media (max-width: 320px) {
         width: 100%;
     }
-
-    
 `;
 
 const CarouselText = styled.p`
@@ -69,11 +70,11 @@ const CarouselText = styled.p`
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   text-align: center;
-  font-size: 10em;
+  font-size: 7em;
 `;
 
 const StyledCarousel = styled(Carousel)`
-    width: 100%; // Cambia esto para ajustar el tamaño del carrusel
+    width: 70%; // Cambia esto para ajustar el tamaño del carrusel
     margin: auto; // Centra el carrusel
     border: 1px solid #333; // Agrega un borde al carrusel
     border-radius: 10px; // Agrega bordes redondeados
@@ -118,11 +119,11 @@ const StyledButton = styled.button`
   bottom: 100px;
   left: 80%;
   transform: translateX(-50%);
-  padding: 10px 20px;
+  padding: 20px 40px;
   color: #fff;
   background-color: #333;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.6em;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -131,6 +132,21 @@ const StyledButton = styled.button`
     background-color:rgba(236, 158, 158, 0.691);
   }
 `;
+
+// const StyledButton = styled.button`
+//   padding: 15px 30px;
+//   border: none;
+//   border-radius: 5px;
+//   background-color: #f8a1a1;
+//   color: #fff;
+//   font-size: 20px;
+//   cursor: pointer;
+//   transition: background-color 0.3s;
+
+//   &:hover {
+//     background-color: #f77;
+//   }
+// `;
 
 
 function Inicio() {
@@ -146,14 +162,14 @@ function Inicio() {
             <CarouselText>FITLIFE</CarouselText>
             <StyledButton>REGISTRESE AHORA</StyledButton> {/* Aquí está tu nuevo botón */}
           </div>
-          {/* <div>
-            <img src="/Imagen2.jpg" alt="Imagen 2" />
-            <CarouselText>  MI ESTILO DE VIDA</CarouselText>
-          </div> */}
-          {/* <div>
-            <img src="Imagen3.jpg" alt="Imagen 3" />
-            <CarouselText>Texto para la imagen 3</CarouselText>
-          </div> */}
+           <div>
+            <img src="/yoga.jpg" alt="Imagen 2" />
+            <CarouselText>TU ESTILO DE VIDA</CarouselText>
+          </div> 
+           <div>
+            <img src="/fuerza2.jpg" alt="Imagen 3" />
+            <CarouselText>"Vive más fuerte, vive más sano con FitLife."</CarouselText>
+          </div> 
         </StyledCarousel>
       </StyledSection>
       <Acerca />

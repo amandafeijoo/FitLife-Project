@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   align-items: center;
   font-family: monospace;
   font-size: 1.5em; 
-  color: #333; 
+  color: #bcbbbb; 
 `;
 
 const StyledLink = styled(Link)`

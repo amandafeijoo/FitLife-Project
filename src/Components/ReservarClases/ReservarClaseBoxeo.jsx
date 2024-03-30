@@ -55,6 +55,7 @@ const StyledCard = styled.div`
   align-items: center;
   background-color: #f9f5f5;
   border-radius: 10px;
+  border: 4px solid #ccc;
   width: 1000px;
   height: 600px;
 `;
@@ -70,6 +71,7 @@ const StyledForm = styled.form`
   padding: 20px;
   background-color: #fbf0d9;
   border-radius: 10px;
+  border: 3px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: monospace;
   font-size: 1.2em;
@@ -147,6 +149,7 @@ const StyledBigCard = styled.div`
   align-items: center;
   background-color: #a19797;
   border-radius: 10px;
+  
   width: 1200px; // Ajusta esto a la anchura que desees
   height: 800px; // Ajusta esto a la altura que desees
   position: relative;

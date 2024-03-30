@@ -23,10 +23,11 @@ import ReservarClaseBoxeo from './Components/ReservarClases/ReservarClaseBoxeo';
 import ReservarClaseCardio from './Components/ReservarClases/ReservarClaseCardio';
 
 
+
 const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: rgba(244, 189, 150, 0.691); // Reemplaza #yourColor con el color que desees
-    }
+  body {
+    background-color: rgba(56, 55, 54, 0.691);
+  }
 `;
 
 function App() {

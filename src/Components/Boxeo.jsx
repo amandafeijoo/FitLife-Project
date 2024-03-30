@@ -1,105 +1,78 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);// 2 columnas con el mismo ancho
-    gap: 20px;
+const TopContainer = styled.div`
+    position: relative;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px;
     padding: 20px;
 `;
 
+const BackgroundImage = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
+    box-shadow: 5px 5px 5px #333;
+    
+`;
 
-const TextContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const TextContainerInside = styled.div`
+    position: absolute;
+    color: white;
+    text-align: center;
     padding: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color:  rgba(246, 169, 76, 0.691);
-    color: #7b7979; 
     font-size: 1.5em;
     font-family: monospace;
+    z-index: 1;`;
+
+const TextContainerBelow = styled.div`
+    color: black;
     text-align: center;
-    /* line-height: 1.5;
-    letter-spacing: 1px; */
-    text-transform: uppercase;
-    width: 500px;
-    height: 500px;
+    padding: 20px;
+    font-size: 1.2em;
+    font-family: monospace;
+    background: rgba(125, 147, 236, 0.4);
+
 `;
+
+
 const StyledH1 = styled.h1`
   text-align: center;
-  font-size: 5em; 
-  font-family: monospace;
-  color: #7b7979;
-  margin: 20px;
-`;
-
-const ImageContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 500px;
-    height: 500px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-
-`;
-
-const Card = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
-`;
-const InfoCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  margin: 20px;
-  background-color:rgba(250, 193, 122, 0.691);
-  border-radius: 10px;
-  border: 1px solid #969595;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  width: 80%; // ajustar el tamaño de la tarjeta aquí
-  text-align: center; 
-  font-size: 1em; 
-  font-family: monospace;
-  color: #7b7979; 
-  transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
+  font-size: 7em;    
+  color: #1e1e1f;
+   margin: 20px;
+   font-family: 'monospace';
 `;
 
 
-const InfoCardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-
-`;
 const StyledImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
 `;
+
+const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(31, 30, 30, 0.5); // Ajusta el último valor para cambiar la opacidad
+`;
+
 
 const ButtonWrapper = styled.div`
     display: flex;
@@ -111,26 +84,36 @@ const ButtonContainer = styled.div`
     justify-content: center;
     margin: 20px;
 `;
+
 const StyledButton = styled.button`
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  background-color: #fa8484;
+  background-color: #fc5f5f;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #f77;
+    background-color: #639ceb;
   }
 `;
+
 const StyledLink = styled(Link)`
     text-decoration: none;
 `;
-
-
+const images = ["boxeo1.jpg", "boxeo3.jpg"]; // Reemplaza con las rutas a tus imágenes
 function Boxeo () {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((currentImageIndex + 1) % images.length);
+    }, 5000); // Cambia la imagen cada 5 segundos
+
+    return () => clearInterval(timer); // Limpia el intervalo cuando el componente se desmonta
+  }, [currentImageIndex]);
   return (
     <div>
       <StyledH1>BOXEO</StyledH1>
@@ -141,66 +124,31 @@ function Boxeo () {
         </StyledLink>
     </ButtonWrapper>
 </ButtonContainer>
-
-<InfoCardContainer>
-        <InfoCard>
+<TopContainer>
+        <BackgroundImage src={images[currentImageIndex]} alt="Boxeo" />
+        <Overlay />
+        <TextContainerInside>
           <h2>Horario de las clases</h2>
-          <p>Lunes: 12:00 - 13:00 PM (Intermedia)
+          <p>Lunes: 12:00 - 13:00 
             <br />
-            Martes: 18:00 - 19:00  (Principiantes)
+            Martes: 18:00 - 19:00 
             <br />
-            Miércoles: 17:30 - 18:30  (Alta Intensidad)
+            Miércoles: 17:30 - 18:30
             <br />
-            Jueves: 18:00 - 19:00 PM (Avanzado)
+            Jueves: 18:00 - 19:00 
             <br />
-            Viernes: 17:30 - 18:30 PM (Para Todos los Niveles)
+            Viernes: 17:30 - 18:30
             <br />
-            Sábado: 12:00 - 13:00 PM (Entrenamiento en Circuito)</p>
-          <h2>Instructores</h2>
-          <p>Las clases de yoga son impartidas por los instructores Diego y Javier.</p>
-        </InfoCard>
-      </InfoCardContainer>
-      <GridContainer>
-        <Card>
-          <TextContainer>
-            <p>Acondicionamiento Cardiovascular:
-                  Las clases de boxeo ofrecen un entrenamiento cardiovascular intenso que ayuda a mejorar la resistencia y la capacidad pulmonar. Los ejercicios de alta intensidad como el trabajo de saco y los sprints mejoran la salud del corazón y los pulmones, promoviendo una mejor salud cardiovascular en general.</p>
-            </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/boxeo1.jpg" alt="Yoga 1" />
-          </ImageContainer>
-        </Card>
-        <Card>
-          <TextContainer>
-            <p>Fortalecimiento Muscular y Tono Corporal:
-                  El entrenamiento de boxeo implica una amplia variedad de movimientos que trabajan diferentes grupos musculares en todo el cuerpo. Esto ayuda a fortalecer y tonificar los músculos, especialmente los brazos, hombros, espalda, abdomen y piernas, promoviendo una apariencia física más definida y atlética.</p>
-            </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/boxeo2-1.jpg" alt="Yoga 2" />
-          </ImageContainer>
-        </Card>
-        <Card>
-          <TextContainer>
-            <p>Mejora de la Coordinación y la Agilidad:
-                  El boxeo requiere movimientos rápidos y precisos que mejoran la coordinación mano-ojo y la agilidad corporal. Los ejercicios de golpear el saco y esquivar los golpes ayudan a mejorar la coordinación y los reflejos, lo que puede ser beneficioso tanto en el deporte como en la vida cotidiana.</p>
-            </TextContainer>
-        </Card>
-        <Card>
-          <ImageContainer>
-            <StyledImg src="/boxeo3.jpg" alt="Yoga 3" />
-          </ImageContainer>
-        </Card>
-      </GridContainer>
-        <ButtonWrapper>
-            <StyledLink to="/reserva">
-                <StyledButton>Reservar Clase</StyledButton>
-        </StyledLink>
-    </ButtonWrapper>
-    </div>
+            Sábado: 12:00 - 13:00</p>
+          </TextContainerInside>
+      </TopContainer>
+      <TextContainerBelow>
+      <h2>Instructores</h2>
+      <p>Las clases de Boxeo son impartidas por los instructores Diego y Javier.</p>
+          <h2>Beneficios</h2>
+          <p>Las clases de boxeo ofrecen un entrenamiento cardiovascular intenso que ayuda a mejorar la resistencia y la capacidad pulmonar. Los ejercicios de alta intensidad como el trabajo de saco y los sprints mejoran la salud del corazón y los pulmones, promoviendo una mejor salud cardiovascular en general.</p>
+        </TextContainerBelow>
+      </div>
   );
 }
 

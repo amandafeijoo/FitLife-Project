@@ -54,6 +54,7 @@ const StyledCard = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #f9f5f5;
+  border: 4px solid #ccc;
   border-radius: 10px;
   width: 1000px;
   height: 600px;
@@ -70,6 +71,7 @@ const StyledForm = styled.form`
   padding: 20px;
   background-color: #fbf0d9;
   border-radius: 10px;
+  border: 3px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: monospace;
   font-size: 1.2em;
