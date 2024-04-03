@@ -7,7 +7,7 @@ const Grid = styled.main`
   gap: 2rem;
   padding: 1rem;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1300px;
     width: 100%;
     height: 100%;
     padding: 0 1rem;

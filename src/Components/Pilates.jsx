@@ -105,7 +105,7 @@ const StyledLink = styled(Link)`
     text-decoration: none;
 `;
 
-const images = ["pilates1.jpg", "pilates2.jpg"]; // Reemplaza con las rutas a tus imágenes
+const images = ["pilates1.jpg", "pilates3.jpg"]; // Reemplaza con las rutas a tus imágenes
 
 
 function Pilates() {

@@ -23,7 +23,7 @@ const BackgroundImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(70%);
+    filter: brightness(100%);
     border-radius: 10px;
     box-shadow: 5px 5px 5px #333;
     
@@ -52,7 +52,7 @@ const TextContainerBelow = styled.div`
 const StyledH1 = styled.h1`
   text-align: center;
   font-size: 7em;    
-  color: #1e1e1f;
+  color: #3c61a1;
    margin: 20px;
    font-family: 'monospace';
 `;
@@ -105,7 +105,7 @@ const StyledLink = styled(Link)`
     text-decoration: none;
 `;
 
-const images = ["yoga1.jpg", "yoga3.jpg"]; // Reemplaza con las rutas a tus imágenes
+const images = ["yoga1.jpg", "formyoga.jpg"]; // Reemplaza con las rutas a tus imágenes
 function Yoga() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

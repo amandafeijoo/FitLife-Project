@@ -7,6 +7,104 @@ import moment from 'moment';
 import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: rgba(56, 55, 54, 0.691);
+  }
+`;
+
+const StyledH1 = styled.h1`
+  text-align: center;
+  font-size: 4em; 
+  font-family: monospace;
+  color: #efeff6;
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+`;
+const BackgroundContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  background-image: url('/fuerza1.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;  
+  overflow: auto;
+`;
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: transparent; 
+  border-radius: 20px;  
+  overflow: auto;
+`;
+ 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 50px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+  background-color: rgba(242, 241, 241, 0.8); // Cambia el último valor para ajustar la transparencia
+  width: 300px; // Ajusta esto a lo que necesites
+  margin: 0 auto;
+  font-family: monospace;
+`;
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+const Input = styled.input`
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: monospace;
+`;
+
+const Button = styled.button`
+  width: 300px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: monospace;
+
+  &:hover {
+    background-color: #9a7bee;
+  }
+`;
+
+const StyledSelect = styled.select`
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: monospace;
+`;
+
 
 
 moment.locale('es');
@@ -32,127 +130,7 @@ const messages = {
   dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
 };
 
-
-const StyledH1 = styled.h1`
-  text-align: center;
-  font-size: 5em; 
-  font-family: monospace;
-  color: #525252;
-  margin: 10px;
-  padding: 10px;
-`;
-const StyledContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-
-const StyledCard = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f9f5f5;
-  border-radius: 10px;
-  border: 4px solid #ccc;
-  width: 1000px;
-  height: 600px;
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 20px;
-  width: 90%;
-  height: 80%;
-  padding: 20px;
-  background-color: #fbf0d9;
-  border-radius: 10px;
-  border: 3px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: monospace;
-  font-size: 1.2em;
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: left;
-  font-size: 16px;
-  color: #333;
-`;
-
-const StyledSelect = styled.select`
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: right;
-  color: #333;
-  margin-bottom: 10px;
-`;
-
-const StyledButton = styled.button`
-  padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
-  background-color: #f8a1a1;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #f77;
-  }
-`;
-
-const StyledSelectButton = styled.button`
-  padding: 6px 12px;
-  border: none;
-  border-radius: 5px;
-  background-color: #f8a1a1;
-  color: #fff;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #f77;
-  }
-`;
-
-const StyledImage = styled.img`
-  display: flex;
-  border-radius: 10px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-  width: 70%;
-  height: 100%;
-  object-fit: cover;
-  transition: 0.3s;
-
-  /* Mueve la tarjeta hacia arriba cuando pasas el mouse por encima */
-  &:hover {
-    transform: translateY(-10px);
-  }
-`;
-
-const StyledBigCard = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #a19797;
-  border-radius: 10px;
-  width: 1200px; // Ajusta esto a la anchura que desees
-  height: 800px; // Ajusta esto a la altura que desees
-  position: relative;
-`;
+Modal.setAppElement('#root');
 
 function ReservarClaseFuerza () {
   const { register, handleSubmit, setValue } = useForm();
@@ -160,6 +138,20 @@ function ReservarClaseFuerza () {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleReservarClick = (event) => {
+    event.preventDefault();
+    // Aquí puedes manejar el registro
+    console.log(`Registrando con usuario: ${username}, email: ${email} y contraseña: ${password}`);
+    navigate('/PaginaUsuario');
+  };
+
 
   const handleSelectEvent = event => {
     setSelectedDate(event.start);
@@ -175,10 +167,10 @@ function ReservarClaseFuerza () {
   
 
 
-  const onSubmit = data => {
-    console.log(data);
-    // Aquí puedes manejar la presentación del formulario, por ejemplo, enviando los datos a Firebase
-  };
+  // const onSubmit = data => {
+  //   console.log(data);
+  //   // Aquí puedes manejar la presentación del formulario, por ejemplo, enviando los datos a Firebase
+  // };
 
   
 
@@ -219,19 +211,18 @@ for (let week = 0; week < 52; week++) {
 }
   
   return (
-    <> 
-    <StyledH1>RESERVA TU CLASE</StyledH1>
-    <StyledContainer>
-    <StyledBigCard>
-      <StyledCard>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <BackgroundContainer>
+    <FormContainer>
+      <FormWrapper> 
+    <StyledH1>RESERVA TU CLASE </StyledH1>  
+    <Form onSubmit={handleSubmit}>
   <label>
     Usuario:
-    <StyledInput {...register('usuario')} required />
+    <Input {...register('usuario')} required />
   </label>
   <label>
     Contraseña:
-    <StyledInput {...register('password')} type="password" required />
+    <Input {...register('password')} type="password" required />
   </label>
   <label>
     Instructor:
@@ -246,12 +237,12 @@ for (let week = 0; week < 52; week++) {
         Fecha y hora:
         <br />
         <br />
-            <StyledSelectButton type="button" onClick={handleOpenModal}>
+            <Button type="button" onClick={handleOpenModal}>
             Seleccionar
-            </StyledSelectButton>
+            </Button>
           <br />
           <br />
-            <StyledInput type="text" {...register('date')} readOnly />
+            <Input type="text" {...register('date')} readOnly />
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={() => setModalIsOpen(false)}
@@ -270,14 +261,13 @@ for (let week = 0; week < 52; week++) {
                 />
               )}
             </Modal>
-          </label>
-          <StyledButton type="submit">Reservar</StyledButton>
-        </StyledForm>
-      <StyledImage src="/fuerza2.jpg" alt="Clase de Fuerza" />
-    </StyledCard>
-   </StyledBigCard>
-  </StyledContainer>
-      </>
+            </label>
+            <Button type="submit" onClick={handleReservarClick}>Reservar</Button>
+             </Form>
+              </FormWrapper>
+            </FormContainer>
+            </BackgroundContainer>
+     
   );
 
 }

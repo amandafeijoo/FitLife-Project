@@ -1,6 +1,8 @@
+import { Content } from "antd/es/layout/layout";
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 
 const StyledLink = styled(Link)`
   color:  #dcc2cb;
@@ -23,6 +25,8 @@ const StyledLink = styled(Link)`
 const StyledLi = styled.li`
   list-style: none;
   text-align: center;
+  font-family: monospace;
+  margin: 15px;
 `;
 
 const ImageContainer = styled.div`

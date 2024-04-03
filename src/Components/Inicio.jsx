@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
 const StyledSection = styled.section`
   padding: 20px;
-  background-color: rgba(145, 196, 246, 0.691); 
+  background: #406d9a;
   color: #333;
   font-family: 'Arial', sans-serif;
   width: 100%;
@@ -66,15 +66,15 @@ const CarouselText = styled.p`
   position: absolute;
   bottom: 10px;
   left: 10px;
-  color: rgba(236, 158, 158, 0.691);
+  color: #c9c9eb;;
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   text-align: center;
-  font-size: 7em;
+  font-size: 8em;
 `;
 
 const StyledCarousel = styled(Carousel)`
-    width: 70%; // Cambia esto para ajustar el tamaño del carrusel
+    width: 60%; // Cambia esto para ajustar el tamaño del carrusel
     margin: auto; // Centra el carrusel
     border: 1px solid #333; // Agrega un borde al carrusel
     border-radius: 10px; // Agrega bordes redondeados
@@ -164,11 +164,11 @@ function Inicio() {
           </div>
            <div>
             <img src="/yoga.jpg" alt="Imagen 2" />
-            <CarouselText>TU ESTILO DE VIDA</CarouselText>
+            <CarouselText>FITLIFE</CarouselText>
           </div> 
            <div>
             <img src="/fuerza2.jpg" alt="Imagen 3" />
-            <CarouselText>"Vive más fuerte, vive más sano con FitLife."</CarouselText>
+            <CarouselText>FITLIFE</CarouselText>
           </div> 
         </StyledCarousel>
       </StyledSection>

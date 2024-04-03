@@ -30,7 +30,7 @@ const TextContainerBelow = styled.div`
     padding: 20px;
     font-size: 1.2em;
     font-family: monospace;
-    background: rgba(121, 145, 241, 0.4);
+    background: rgba(70, 103, 157, 0.4);
     position: absolute;
     z-index: 2;
 
@@ -38,7 +38,7 @@ const TextContainerBelow = styled.div`
 const StyledH1 = styled.h1`
   text-align: center;
   font-size: 7em;    
-  color: #1e1e1f;
+  color: #c9c9eb;
    margin: 20px;
    font-family: 'monospace';
 `;
