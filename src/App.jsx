@@ -5,7 +5,7 @@ import Header from './Components/Header';
 import Inicio from './Components/Inicio';
 import Acerca from './Components/Acerca';
 import Precios from './Components/Precios';
-import IniciarSesion from './Components/InciarSesion';
+import IniciarSesion from './Components/IniciarSesion';
 import Contacto from './Components/Contacto';
 import Footer from './Components/Footer';
 import Instructores from './Components/Instructores';
@@ -27,15 +27,25 @@ import PaginaUsuario from './Components/PaginaUsuario';
 import Gestion from './Components/Gestion';
 import styled from 'styled-components';
 import { UserContext } from './Components/UserContext';
+import Registrarse from './Components/Registrarse';
+import Calendario from './Components/Calendario';
+import ClaseGratuita from './Components/ClaseGratuita';
 // import { ReservacionesContext } from './Components/ReservacionesContext';
 
 const ContentContainer = styled.div`
   padding-top: 170px; // Ajusta este valor según la altura de tu barra de navegación
 `;
-
 const GlobalStyle = createGlobalStyle`
+ 
   body {
-    background-color: rgba(56, 55, 54, 0.691);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    background-color: rgba(35, 35, 35, 0.691);
+  }
+
+  button, input, select, textarea, h1, h2, p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
   }
 `;
 
@@ -60,6 +70,9 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+
 
 
 
@@ -68,13 +81,14 @@ function App() {
     <Router>
       <GlobalStyle />
       <div className="App">
-        <Header />
+      <Header showCalendar={showCalendar} />
         <ContentContainer>
         {/* <ReservacionesProvider> */}
         <Routes>
           <Route path="/Inicio/*" element={<Inicio />} />
           <Route path="/Acerca/*" element={<Acerca/>} />
           <Route path="/Acerca/Instructores" element={<Instructores />} />
+          <Route path="/Clases" element={<Clases />} />
           <Route path="/Acerca/Clases" element={<Clases />} />
           <Route path="/Yoga" element={<Yoga/>} />
           <Route path="/Fuerza" element={<Fuerza />} />
@@ -90,9 +104,11 @@ function App() {
           <Route path="/ReservarClases/ReservarClaseCardio" element={<ReservarClaseCardio />} />
           <Route path='/PaginaUsuario' element={<PaginaUsuario />} />
           <Route path="/Precios" element={<Precios />} />
-          <Route path="/InciarSesion" element={<IniciarSesion />} />
-          <Route path="/Contacto" element={<Contacto />} />
+          <Route path="/IniciarSesion" element={<IniciarSesion onLogin={() => setIsAuthenticated(true)} />} />          <Route path="/Contacto" element={<Contacto />} />
           <Route path="/Gestion" element={<Gestion />} />
+          <Route path="/Registrarse" element={<Registrarse />} />
+          <Route path="/Calendario" element={<Calendario />} />
+          <Route path="ClaseGratuita" element= {<ClaseGratuita />} />
         </Routes>
         {/* </ReservacionesProvider> */}
         <Footer />

@@ -8,21 +8,14 @@ import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
+import NavigationLinks from '../NavigationLinks';
 // import { ReservacionesContext } from '../ReservacionesContext';
 
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: rgba(56, 55, 54, 0.691);
-  }
-`;
-
 const StyledH1 = styled.h1`
   text-align: center;
-  font-size: 4em; 
-  font-family: monospace;
-  color: #464850;
+  font-size: 2em; 
+  color: #efeff6;
   margin: 10px;
   padding: 10px;
   position: relative;
@@ -41,72 +34,115 @@ const BackgroundContainer = styled.div`
   border-radius: 20px;  
   overflow: auto;
 `;
+const StyledTextarea = styled.textarea`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  font-size: 14px;
+`;
+
+const StyledSelect = styled.select`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  font-size: 14px;
+`;
+
+const StyledInput = styled.input`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  font-size: 14px;
+`;
+
+const StyledLabel = styled.label`
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: #222121;
+  font-size: 14px;
+  font-weight: 200;
+`;
+
+
+
+const Button = styled.button`
+  position: relative;
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  display: block;
+  appearance: none;
+  border-radius: 4px;
+  width: 100%;
+  font-weight: 400;
+  letter-spacing: 0.5rem;
+  transition: 0.3s all;
+  cursor: pointer;
+  `;
+
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  background: transparent;
-  border-radius: 20px;  
-  overflow: auto;
-`;
- 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 50px;
-  margin-top: 20px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #6ee8ad;
+  background: rgba(105, 106, 108, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-  background-color: rgba(242, 241, 241, 0.8); // Cambia el último valor para ajustar la transparencia
-  width: 300px; // Ajusta esto a lo que necesites
+  flex-basis: 50%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  max-width: 850px;
   margin: 0 auto;
-  font-family: monospace;
-`;
-const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  font-size: 20px;
+  color: #ecf0ed;
+
 `;
 
-
-const Input = styled.input`
-  width: 300px;
-  padding: 10px;
-  border-radius: 5px;
+const Form = styled.form`
+   max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
   border: 1px solid #ccc;
-  font-size: 16px;
-  font-family: monospace;
-`;
+  border-radius: 4px;
+  background-color: rgba(229, 226, 226, 0.8); // Cambia el último valor para ajustar la transparencia
 
-const Button = styled.button`
-  width: 300px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
-  font-size: 16px;
-  margin-bottom: 20px;
-  font-family: monospace;
 
-  &:hover {
-    background-color: #9a7bee;
+  @media (min-width: 768px) {
+    width: 500px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 700px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 900px;
   }
 `;
-
-const StyledSelect = styled.select`
-  width: 300px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  font-family: monospace;
-`;
-
 
 moment.locale('es');
 const localizer = momentLocalizer(moment);
@@ -133,13 +169,11 @@ const messages = {
 
 Modal.setAppElement('#root');
 
-// function handleFormSubmit(data) {
-//   const { setFormulario } = React.useContext(ReservacionesContext);
-// }
 
 function ReservarClaseYoga () {
   // const { setFormulario } = React.useContext(ReservacionesContext);
-
+  const classes = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
+  const currentClassIndex = classes.indexOf('Yoga');
   const { register, handleSubmit, setValue } = useForm();
   const [showCalendar, setShowCalendar] = useState(false); 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -161,7 +195,7 @@ function ReservarClaseYoga () {
   
   const handleReservarClick = (event) => {
     event.preventDefault();
-    // Aquí puedes manejar el registro
+    //manejar el registro
     console.log(`Registrando con usuario: ${username}, email: ${email} y contraseña: ${password}`);
     navigate('/PaginaUsuario');
   };
@@ -169,23 +203,15 @@ function ReservarClaseYoga () {
   const handleSelectEvent = event => {
     setSelectedDate(event.start);
     setModalIsOpen(false);
-    setShowCalendar(false);
-    setValue('date', event.start);
+    setShowCalendar(true);
+   setValue('date', event.start);
   };
+
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
     setShowCalendar(true);
   };
-  
-
-
-  // const onSubmit = data => {
-  //   console.log(data);
-  //   // Aquí puedes manejar la presentación del formulario, por ejemplo, enviando los datos a Firebase
-  // };
-
-  
 
   const events = [];
 
@@ -239,20 +265,21 @@ for (let week = 0; week < 52; week++) {
 }
   
   return (
+    <> 
+    <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
     <BackgroundContainer>
     <FormContainer>
-      <FormWrapper> 
-    <StyledH1>RESERVA TU CLASE </StyledH1>  
+    {!showCalendar && <StyledH1>RESERVA TU CLASE DE YOGA</StyledH1>}  
     <Form onSubmit={handleSubmit}>
-  <label>
+  <StyledLabel>
     Usuario:
-    <Input {...register('usuario')} required />
-  </label>
-  <label>
+    <StyledInput {...register('usuario')} required />
+  </StyledLabel>
+  <StyledLabel>
     Contraseña:
-    <Input {...register('password')} type="password" required />
-  </label>
-  <label>
+    <StyledInput {...register('password')} type="password" required />
+  </StyledLabel>
+  <StyledLabel>
     Instructor:
     <StyledSelect {...register('clase')} required>
             <option value="">Selecciona un instructor</option>
@@ -260,18 +287,16 @@ for (let week = 0; week < 52; week++) {
             <option value="Laura">Laura</option>
             <option value="Cualquiera">Cualquiera</option>
     </StyledSelect>
-  </label>
-        <label>
+  </StyledLabel>
+        <StyledLabel>
         Fecha y hora:
         <br />
         <br />
-            <Button type="button" onClick={handleOpenModal}>
-            Seleccionar
-            </Button>
+            <Button type="button" onClick={handleOpenModal}>Seleccionar</Button>
           <br />
           <br />
-            <Input type="text" {...register('date')} readOnly />
-            <Modal
+            <StyledInput type="text" {...register('date')} readOnly />
+                <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={() => setModalIsOpen(false)}
                 >
@@ -289,12 +314,12 @@ for (let week = 0; week < 52; week++) {
                 />
               )}
             </Modal>
-            </label>
+            </StyledLabel>
             <Button type="submit" onClick={handleReservarClick}>Reservar</Button>
              </Form>
-              </FormWrapper>
             </FormContainer>
             </BackgroundContainer>
+            </>
 
   );
 }

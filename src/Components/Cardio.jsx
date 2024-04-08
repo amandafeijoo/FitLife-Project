@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import NavigationLinks from './NavigationLinks';
+import ClaseGratuita from './ClaseGratuita';
 
 const TopContainer = styled.div`
     position: relative;
@@ -14,6 +16,7 @@ const TopContainer = styled.div`
     border-radius: 10px;
     margin: 20px;
     padding: 20px;
+    border: 1px solid #9ce297;
 `;
 
 const BackgroundImage = styled.img`
@@ -34,27 +37,17 @@ const TextContainerInside = styled.div`
     text-align: center;
     padding: 20px;
     font-size: 1.5em;
-    font-family: monospace;
-    z-index: 1;`;
-
-const TextContainerBelow = styled.div`
-    color: black;
-    text-align: center;
-    padding: 20px;
-    font-size: 1.2em;
-    font-family: monospace;
-    background: rgba(125, 147, 236, 0.4);
-
-`;
-
+    z-index: 1;
+    `;
 
 const StyledH1 = styled.h1`
+  margin-top: 10px;
   text-align: center;
-  font-size: 7em;    
-  color: #1e1e1f;
-   margin: 20px;
-   font-family: 'monospace';
+  color: white;
+  font-size: 100px;
+  padding-bottom: 0px;
 `;
+
 
 
 const StyledImg = styled.img`
@@ -72,41 +65,49 @@ const Overlay = styled.div`
     height: 100%;
     background: rgba(31, 30, 30, 0.5); // Ajusta el último valor para cambiar la opacidad
 `;
-
-
-const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-`;
-
-const StyledButton = styled.button`
-  padding: 15px 30px;
+const Button = styled.button`
+  position: relative;
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
   border: none;
-  border-radius: 5px;
-  background-color: #fc5f5f;
-  color: #fff;
-  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  display: block;
+  appearance: none;
+  border-radius: 4px;
+  width: 100%;
+  font-weight: 400;
+  letter-spacing: 0.5rem;
+  transition: 0.3s all;
   cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #639ceb;
-  }
-`;
+  `;
 
 const StyledLink = styled(Link)`
     text-decoration: none;
+
+    @media (min-width: 768px) {
+    width: 500px;
+  }
+  
+  @media (min-width: 1024px) {
+    width: 700px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 900px;
+  }
 `;
 const images = ["cardio1.jpg", "cardio3.jpg"];
+
+
 function Cardio() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const classes = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
+  const currentClassIndex = classes.indexOf('Cardio');
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((currentImageIndex + 1) % images.length);
@@ -116,14 +117,11 @@ function Cardio() {
   }, [currentImageIndex]);
   return (
     <div>
+          <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>CARDIO</StyledH1>
-      <ButtonContainer>
-    <ButtonWrapper>
     <StyledLink to="/ReservarClases/ReservarClaseCardio">
-            <StyledButton>Reservar Clase</StyledButton>
+            <Button>Reservar Clase</Button>
         </StyledLink>
-    </ButtonWrapper>
-    </ButtonContainer>
     <TopContainer>
         <BackgroundImage src={images[currentImageIndex]} alt="Boxeo" />
         <Overlay />
@@ -133,15 +131,14 @@ function Cardio() {
             <br />
             Miércoles: 12:00 - 13:00
             <br />
-            Domingo: 11:30 AM - 12:30 / 9:00 - 10:00 </p>
+            Domingo: 11:30 AM - 12:30 
+            <br />
+            9:00 - 10:00 </p>
+            <h2>Instructores</h2>
+              <p> Andrea.</p>
             </TextContainerInside>
       </TopContainer>
-      <TextContainerBelow>
-      <h2>Instructores</h2>
-      <p>Las clases de Cardio son impartidas por la instructora Andrea.</p>
-          <h2>Beneficios</h2>
-          <p>El entrenamiento cardiovascular es altamente efectivo para quemar calorías y perder peso. Las clases de cardio en FitLife ofrecen una combinación de ejercicios de alta intensidad y de bajo impacto que ayudan a acelerar el metabolismo y a quemar una gran cantidad de calorías durante y después del ejercicio.</p>
-        </TextContainerBelow>
+      <ClaseGratuita/>
           </div>
    
   );

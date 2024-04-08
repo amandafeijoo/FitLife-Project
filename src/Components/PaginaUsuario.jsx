@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+
 // import { ReservacionesContext } from '../Components/ReservacionesContext';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: rgba(56, 55, 54, 0.691);
-  }
-`;
 
 const TopContainer = styled.div`
     position: relative;
@@ -30,7 +27,6 @@ const TextContainerBelow = styled.div`
     text-align: center;
     padding: 20px;
     font-size: 1.2em;
-    font-family: monospace;
     background: rgba(101, 101, 170, 0.4);
     position: absolute;
     z-index: 2;
@@ -41,7 +37,6 @@ const StyledH1 = styled.h1`
   font-size: 5em;    
   color: #1e1e1f;
    margin: 20px;
-   font-family: 'monospace';
    &:hover {
     color: #2951d5;
     }
@@ -61,7 +56,7 @@ const Overlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(31, 30, 30, 0.5); // Ajusta el último valor para cambiar la opacidad
+    background: rgba(31, 30, 30, 0.5); //  el último valor para cambiar la opacidad
 `;
 
 const StyledUl = styled.ul`
@@ -76,8 +71,8 @@ const ContenedorImagen = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 70%;
-  width: 200px;  /* Ajusta el tamaño según tus necesidades */
-  height: 200px; /* Ajusta el tamaño según tus necesidades */
+  width: 200px;  
+  height: 200px; 
   background-color: #ccc; /* Color de fondo para cuando no hay imagen */
   overflow: hidden;
   position: relative;
@@ -134,98 +129,162 @@ const StyledButton = styled.button`
     }
 `;
 
+const StyledTableContainer = styled.div`
+   max-height: 60vh;  // Ajusta este valor según tus necesidades
+  overflow-y: auto;
+  margin-bottom: 20px;
+`;
 
-const Tabla = styled.table`
+const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;
 
-const Celda = styled.td`
+const StyledRow = styled.tr`
+  &:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+`;
+
+const StyledCell = styled.td`
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 2px;
 `;
 
-const Fila = styled.tr`
-  &:nth-child(even) {background-color: #f2f2f2;}
+const StyledHeaderCell = styled.th`
+  border: 1px solid #ddd;
+  padding: 2px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #235d98;
+  color: white;
+
+  @media (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: 320px) {
+        grid-template-columns: repeat(1, 1fr);
+
+    }
 `;
 
-function PaginaUsuario() {
-    // const { 
-    //   reservacionesYoga, 
-    //   reservacionesBoxeo, 
-    //   reservacionesCardio, 
-    //   reservacionesPilates 
-    // } = React.useContext(ReservacionesContext);
+
+// Funciones para manejar la adición y cancelación de clases
+const handleAddClass = (className) => {
+  switch (className) {
+    case 'Yoga':
+      setYoga(true);
+      break;
+    case 'Boxeo':
+      setBoxeo(true);
+      break;
+    case 'Cardio':
+      setCardio(true);
+      break;
+    case 'Fuerza':
+      setFuerza(true);
+      break;
+    case 'Pilates':
+      setPilates(true);
+      break;
+    default:
+      break;
+  }
+};
+
+const handleCancelClass = (className) => {
+  switch (className) {
+    case 'Yoga':
+      setYoga(false);
+      break;
+    case 'Boxeo':
+      setBoxeo(false);
+      break;
+    case 'Cardio':
+      setCardio(false);
+      break;
+    case 'Fuerza':
+      setFuerza(false);
+      break;
+    case 'Pilates':
+      setPilates(false);
+      break;
+    default:
+      break;
+  }
+};
+
+  function PaginaUsuario() {
+      const location = useLocation();
+      const navigate = useNavigate();
+      let formData = location.state ? location.state.formData : {};
+      const username = location.state?.username || 'Usuario';
+      const initialMembresia = location.state?.membresia || 'Membresía Usuario';
+      const [membresia, setMembresia] = useState(initialMembresia);
+      const [clases, setClases] = useState([]);
+      const [usuario, setUsuario] = useState(null);
+      const [currentImageIndex, setCurrentImageIndex] = useState(0);
+      const [imagenPerfil, setImagenPerfil] = useState(null);
+      const [yoga, setYoga] = useState(false);
+      const [boxeo, setBoxeo] = useState(false);
+      const [cardio, setCardio] = useState(false);
+      const [fuerza, setFuerza] = useState(false);
+      const [pilates, setPilates] = useState(false);
+      
+      
+      useEffect(() => {
+        setUsuario({ nombre: username, email: `${username}@example.com` });
+        setMembresia(membresia);
+        setClases([]);
+        console.log('useEffect ha terminado');
+      }, []);
+
+      const handleAddClass = (clase) => {
+        setClases([...clases, clase]);
+      };
+      
+      const handleCancelClass = (clase) => {
+        setClases(clases.filter(c => c !== clase));
+      };
+      
+      useEffect(() => {
+        const timer = setInterval(() => {
+          setCurrentImageIndex((currentImageIndex + 1) % images.length);
+        }, 12000); // Cambia la imagen cada 12 segundos
+        return () => clearInterval(timer); // Limpia el intervalo cuando el componente se desmonta
+      }, [currentImageIndex]);
+      
+      if (!usuario) {
+        return <p>Cargando...</p>;
+      }
+      
+      const handleImageChange = (event) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagenPerfil(reader.result);
+        };
+        reader.readAsDataURL(event.target.files[0]);
   
-    // // Ahora puedes usar las variables de reservaciones en cualquier lugar de tu componente
-    // console.log(reservacionesYoga);
+      }
   
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((currentImageIndex + 1) % images.length);
-    }, 12000); // Cambia la imagen cada 12 segundos
-    return () => clearInterval(timer); // Limpia el intervalo cuando el componente se desmonta
-  }, [currentImageIndex]);
-
-  const [usuario, setUsuario] = useState(null);
-  const [membresia, setMembresia] = useState(null);
-  const [clases, setClases] = useState([]);
-
-
-  const [reservaciones, setReservaciones] = useState([
-    // Ejemplo de cómo podrían verse  reservaciones
-    { id: 1, nombre: 'Clase 1', horario: '10:00 - 11:00' },
-    { id: 2, nombre: 'Clase 2', horario: '11:00 - 12:00' },
-    // Agrega más clases aquí
-  ]);
-  const cancelarClase = (id) => {
-    // Filtra las reservaciones para quitar la clase con el id dado
-    const nuevasReservaciones = reservaciones.filter((reservacion) => reservacion.id !== id);
-    setReservaciones(nuevasReservaciones);
-  };
-
-  const [imagenPerfil, setImagenPerfil] = useState(usuario ? usuario.imagenPerfil : '');
-
-  const handleImageChange = (event) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagenPerfil(reader.result);
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
-
-const navigate = useNavigate();
-
 const cerrarSesion = () => {
   // Aquí va el código para cerrar la sesión del usuario.
-  // Por ejemplo, puedes borrar el token de autenticación del almacenamiento local:
+  // Por ejemplo, borrar el token de autenticación del almacenamiento local:
   localStorage.removeItem('token');
 
   // Luego, redirige al usuario a la página de inicio de sesión:
-  navigate('/PaginaUsuario');
+  navigate('/IniciarSesion');
+  
 };
-
-
-  useEffect(() => {
-    // Aquí debes cargar los datos del usuario, la membresía y las clases
-    // desde tu servidor o desde donde los estés almacenando.
-    // Por ahora, solo estableceremos algunos datos de prueba.
-    setUsuario({ nombre: 'Juan', email: 'juan@example.com' });
-    setMembresia('Membresía Premium');
-    setClases(['Yoga', 'Pilates', 'Spinning']);
-
-    console.log('useEffect ha terminado');
-  }, []);
-
-  if (usuario === null || membresia === null || clases.length === 0) {
-    return <p>Cargando...</p>;
-  }
 
   return (
     <> 
-      <GlobalStyle />
       <div>
         <TopContainer>
           <img src={images[currentImageIndex]} alt="Imagen del gimnasio" />       
@@ -237,37 +296,52 @@ const cerrarSesion = () => {
             </ContenedorImagen>
                     <InputFile id="file" type="file" onChange={handleImageChange} />
                  <LabelFile htmlFor="file">Seleccionar archivo</LabelFile>           
-             </ContenedorPerfil> 
-            <StyledH1> FITLIFE</StyledH1>
-            <h2>¡Hola, Bienvenido, {usuario.nombre}!</h2>
-            <p>¡Gracias por ser parte de nuestra comunidad FITLIFE!</p>
-            <p>Estos son tus datos:</p>
-            <p>Tu email es: {usuario.email}</p>
-            <p>Tu membresía: {membresia}</p>
-            <h2>Clases reservadas</h2>
-            <Tabla>
-            <thead>
-              <tr>
-                <th>Clase</th>
-                <th>Horario</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reservaciones.map((reservacion) => (
-                <Fila key={reservacion.id}>
-                  <Celda>{reservacion.nombre}</Celda>
-                  <Celda>{reservacion.horario}</Celda>
-                  <Celda><StyledButton onClick={() => cancelarClase(reservacion.id)}>Cancelar clase</StyledButton></Celda>
-                </Fila>
-              ))}
-            </tbody>
-          </Tabla>
-            {/* <StyledUl>
-                {clases.map((clase, index) => <li key={index}>{clase}</li>)}
-            </StyledUl> */}
+                        </ContenedorPerfil> 
+                        <StyledH1> FITLIFE</StyledH1>
+                        <h2>¡Hola, Bienvenido, {usuario.nombre}!</h2>
+                        <p>¡Gracias por ser parte de nuestra comunidad FITLIFE!</p>
+                        <p>Estos son tus datos:</p>
+                        <p>Tu email es: {usuario.email}</p>
+                        <p>Tu membresía: {membresia}</p>
+                        <h2>Reserva tus clases</h2>
+                              <StyledButton type="button" onClick={() => handleAddClass('Yoga')}>
+                                Reservar Yoga
+                              </StyledButton>
+                              <StyledButton type="button" onClick={() => handleAddClass('Boxeo')}>
+                                Reservar Boxeo
+                              </StyledButton>
+                              <StyledButton type="button" onClick={() => handleAddClass('Cardio')}>
+                                Reservar Cardio
+                              </StyledButton>
+                              <StyledButton type="button" onClick={() => handleAddClass('Fuerza')}>
+                                Reservar Fuerza
+                              </StyledButton>
+                              <StyledButton type="button" onClick={() => handleAddClass('Pilates')}>
+                                Reservar Pilates
+                              </StyledButton> 
+                        <StyledTableContainer>
+                        <StyledTable>
+                        <thead>
+                          <tr>
+                            <StyledHeaderCell>Clase Reservada</StyledHeaderCell>
+                            <StyledHeaderCell>Cancelar Clase</StyledHeaderCell>
+                          </tr>
+                        </thead>
+                        <tbody>
+                      {clases.map((clase, index) => (
+                    <StyledRow key={index}>
+                      <StyledCell>{clase}</StyledCell>
+                      <StyledCell>
+                        <StyledButton type="button" onClick={() => handleCancelClass(clase)}>
+                          Cancelar
+                        </StyledButton>
+                      </StyledCell>
+                    </StyledRow>
+                  ))}
+              </tbody>
+            </StyledTable>
+          </StyledTableContainer>
             <StyledButton onClick={cerrarSesion}>Cerrar Sesión</StyledButton>
-
             </TextContainerBelow>
       </TopContainer>
     </div>

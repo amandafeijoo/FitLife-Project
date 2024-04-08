@@ -8,25 +8,47 @@ const FooterContainer = styled.footer`
   padding: 20px;
   background-color: #333;
   color: rgba(244, 242, 241, 0.691);
-    font-family: 'monospace';
     flex-direction: row;
     font-size: 1em;
     text-align: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+
+
     @media (max-width: 768px) {
         flex-direction: column;
     }
     @media (max-width: 576px) {
         flex-direction: column;
     }
+    @media (max-width: 320px) {
+        flex-direction: column;
+    }
+    @media (max-width: 280px) {
+        flex-direction: column;
+    }
+    @media (max-width: 240px) {
+        flex-direction: column;
+    }
+    @media (max-width: 200px) {
+        flex-direction: column;
+    }
+    @media (max-width: 150px) {
+        flex-direction: column;
+    }
+    @media (max-width: 100px) {
+        flex-direction: column;
+    }
 
 `;
 
 const FooterSection = styled.div`
-  // Aquí puedes agregar estilos para cada sección del footer
-`;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    `;
 
 
 function Footer() {
@@ -48,7 +70,7 @@ function Footer() {
                 <h2>Otras Informaciones</h2>
                 <p>Horario de apertura: 6:00 - 22:00</p>
             </FooterSection>
-                <SocialMediaLogos /> {/* Coloca los iconos aquí */}  
+                <SocialMediaLogos /> {/* los iconos aquí */}  
             <p>© 2024 FitLife Gym</p>
         </FooterContainer>
 
