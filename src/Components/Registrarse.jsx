@@ -7,11 +7,12 @@ import { Eye, EyeOff } from 'react-feather'; // Asegúrate de instalar react-fea
 const StyledH1 = styled.h1`
   text-align: center;
   font-size: 2em; 
-  color: #c8edac;
+  color: #ebebe3;
   margin: 10px;
   padding: 10px;
   position: relative;
   z-index: 1;
+  background: rgba(70, 103, 157, 0.6);
 `;
 const BackgroundContainer = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const BackgroundContainer = styled.div`
   background-position: center;
   border-radius: 20px;  
   overflow: auto;
+ 
 `;
 
 const StyledTextarea = styled.textarea`

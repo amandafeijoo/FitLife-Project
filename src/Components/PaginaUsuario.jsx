@@ -89,8 +89,8 @@ function PaginaUsuario() {
     const [usuario, setUsuario] = useState(null);
     const [profileImage, setProfileImage] = useState(null);
     const [reservedClasses, setReservedClasses] = useState([
-      { day: 'Lunes', class: 'Yoga', time: '10:00 ', instructor: 'Instructor 1' },
-      { day: 'Martes', class: 'Pilates', time: '14:00 ', instructor: 'Instructor 2' }
+      { day: 'Lunes', class: 'Yoga', time: '10:00 ', instructor: 'Laura' },
+      { day: 'Martes', class: 'Pilates', time: '14:00 ', instructor: 'Martha' }
   ]);
   const [instructors, setInstructors] = useState({});
 
