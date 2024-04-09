@@ -15,8 +15,8 @@ const StyledSection = styled.section`
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 1.5; // Ajusta esto para cambiar el tamaño del texto
-  color: #161616; // Ajusta esto para cambiar el color del texto
+  font-size: 1.5; 
+  color: #161616; 
   margin-bottom: 20px;
   border-bottom: 2px solid #e86d6d;
   padding-bottom: 10px;
