@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const TopContainer = styled.div`
     position: relative;
-    width: 100%;
+    width: auto;
     height: 700px;
     display: flex;
     align-items: center;
@@ -43,9 +43,9 @@ const StyledH1 = styled.h1`
   text-align: center;
   font-size: 7em;    
   color: #6dade8;
-   margin: 20px;
+  margin: 20px;
 
-   @media (max-width: 768px) {
+  @media (max-width: 768px) {
     font-size: 3em;
   }
 `;
@@ -118,7 +118,7 @@ function Mision() {
     <div>
       <TopContainer>
       <img src={images[currentImageIndex]} alt="Imagen del gimnasio" />       
-       <Overlay />
+      <Overlay />
         <TextContainerBelow>
         <StyledH1>FITLIFE</StyledH1>
       <StyledP>
