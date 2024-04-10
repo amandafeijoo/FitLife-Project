@@ -41,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 700;
     background-color: rgba(35, 35, 35, 0.691);
+    margin: 0;
   }
 
   button, input, select, textarea, h1, h2, p {

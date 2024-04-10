@@ -7,8 +7,7 @@ const StyledSection = styled.section`
   padding: 10px;
   border: 1px solid #6dbde8;
   color: #000000; 
-  width: 100%;
-  height: 30%;
+  width: auto;
   font-size: 1.2em;
   background: rgba(107, 128, 163, 0.4);
 `;
