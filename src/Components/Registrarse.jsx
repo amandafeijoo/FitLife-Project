@@ -12,7 +12,7 @@ const StyledH1 = styled.h1`
   padding: 10px;
   position: relative;
   z-index: 1;
-  background: rgba(79, 172, 109, 0.8);
+  background: rgba(115, 165, 131, 0.8);
 `;
 const BackgroundContainer = styled.div`
   display: flex;
@@ -219,7 +219,7 @@ const checkPasswordsMatch = (password, confirmPassword) => {
 
   return (
     <>
-<BackgroundContainer src="/images/pilates.jpg">
+<BackgroundContainer src="/perfil.jpg">
       <FormContainer>
       <StyledH1>EMPIEZA A ENTRENAR CON FITLIFE</StyledH1>
     <Form onSubmit={handleSubmit}>

@@ -30,7 +30,7 @@ const StyledH1 = styled.h1`
 
 const StyledP = styled.p`
   font-size: 2em;
-  color: #4c4b4b;
+  color: #232323;
   text-align: center;
   padding: 5px;
 `;
@@ -41,7 +41,7 @@ const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #d1c875, #cca940, #d699a2, #80CBC4); // Crea un degradado de amarillo claro a naranja claro a rosa claro a verde claro */
+    background: linear-gradient(to right, #cabf59, #cca940, #d699a2, #80CBC4); // Crea un degradado de amarillo claro a naranja claro a rosa claro a verde claro */
     background-size: cover;
     background-position: center;
     background-attachment: scroll; 
