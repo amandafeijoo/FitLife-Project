@@ -32,16 +32,16 @@ const BackgroundImage = styled.img`
 `;
 
 const TextContainerInside = styled.div`
-    position: absolute;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 1.5em;
-    z-index: 1;
+  position: absolute;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+  z-index: 1;
     `;
 
 const StyledH1 = styled.h1`
-   margin-top: 10px;
+  margin-top: 10px;
   text-align: center;
   color: white;
   font-size: 100px;
@@ -50,9 +50,9 @@ const StyledH1 = styled.h1`
 
 
 const StyledImg = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
     
 `;
 
@@ -119,7 +119,7 @@ function Fuerza() {
     <div>
             <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>FUERZA</StyledH1>
-    <StyledLink to="/ReservarClases/ReservarClaseFuerza">
+    <StyledLink to="/ReservarClase">
             <Button>Reservar Clase</Button>
         </StyledLink>         
         <TopContainer>

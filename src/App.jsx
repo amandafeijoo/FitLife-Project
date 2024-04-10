@@ -17,7 +17,7 @@ import Fuerza from './Components/Fuerza';
 import Pilates from './Components/Pilates';
 import Boxeo from './Components/Boxeo';
 import Cardio from './Components/Cardio';
-import ReservarClaseYoga from './Components/ReservarClases/ReservarClaseYoga';
+import ReservarClase from './Components/ReservarClase';
 import ReservarClaseFuerza from './Components/ReservarClases/ReservarClaseFuerza';
 import ReservarClasePilates from './Components/ReservarClases/ReservarClasePilates';
 import ReservarClaseBoxeo from './Components/ReservarClases/ReservarClaseBoxeo';
@@ -97,7 +97,7 @@ function App() {
           <Route path="/Cardio" element={<Cardio />} />
           <Route path="/Acerca/Mision" element={<Mision />} />
           <Route path="/Reservas" element={<Reservas />} />
-          <Route path="/ReservarClases/ReservarClaseYoga" element={<ReservarClaseYoga />} />
+          <Route path="/ReservarClase" element={<ReservarClase />} />
           <Route path="/ReservarClases/ReservarClaseFuerza" element={<ReservarClaseFuerza />} />
           <Route path="/ReservarClases/ReservarClasePilates" element={<ReservarClasePilates />} />
           <Route path="/ReservarClases/ReservarClaseBoxeo" element={<ReservarClaseBoxeo />} />

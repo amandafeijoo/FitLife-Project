@@ -131,9 +131,9 @@ function Boxeo () {
     <div>
       <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>BOXEO</StyledH1>
-    <StyledLink to="/ReservarClases/ReservarClaseBoxeo">
+      <StyledLink to="/ReservarClase">
             <Button>Reservar Clase</Button>
-        </StyledLink>
+          </StyledLink>
 <TopContainer>
         <BackgroundImage src={images[currentImageIndex]} alt="Boxeo" />
         <Overlay />

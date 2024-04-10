@@ -119,9 +119,9 @@ function Cardio() {
     <div>
           <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>CARDIO</StyledH1>
-    <StyledLink to="/ReservarClases/ReservarClaseCardio">
+      <StyledLink to="/ReservarClase">
             <Button>Reservar Clase</Button>
-        </StyledLink>
+          </StyledLink>
     <TopContainer>
         <BackgroundImage src={images[currentImageIndex]} alt="Boxeo" />
         <Overlay />

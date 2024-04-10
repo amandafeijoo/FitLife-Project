@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavigationLinks from './NavigationLinks';
 import ClaseGratuita from './ClaseGratuita';
+import ReservarClase from './ReservarClase';
+
 
 
 const TopContainer = styled.div`
@@ -124,7 +126,7 @@ function Yoga() {
     <div>
       <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>YOGA </StyledH1>
-          <StyledLink to="/ReservarClases/ReservarClaseYoga">
+          <StyledLink to="/ReservarClase">
             <Button>Reservar Clase</Button>
           </StyledLink>
       <TopContainer>

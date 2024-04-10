@@ -123,9 +123,9 @@ function Pilates() {
     <div>
       <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>PILATES</StyledH1>
-    <StyledLink to="/ReservarClases/ReservarClasePilates">
-            <Button>Reservar Clase</Button>
-        </StyledLink>
+      <StyledLink to="/ReservarClase">
+        <Button>Reservar Clase</Button>
+      </StyledLink>
       <TopContainer>
         <BackgroundImage src={images[currentImageIndex]} alt="Pilates" />
         <Overlay />
