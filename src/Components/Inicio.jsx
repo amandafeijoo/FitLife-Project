@@ -16,10 +16,8 @@ const PageContainer = styled.div`
   animation: 1s ${fadeIn} ease-in;
 `;
 
-
-
 const StyledButton = styled.button`
- position: relative;
+  position: relative;
   background: #ec5990;
   color: white;
   text-transform: uppercase;
@@ -48,7 +46,7 @@ const StyledSection = styled.section`
   background: linear-gradient(to right, #6f6e6e, #333333, #808080, #6f6e6e, #333333, #808080); // Crea un degradado de blanco a gris claro a gris medio a gris oscuro a gris
   /* background: linear-gradient(to right, #f8ec87, #f7cc4d, #FFB6C1, #80CBC4); // Crea un degradado de amarillo claro a naranja claro a rosa claro a verde claro */
   border: 1px solid #6dade8;
-  width: 100%;
+  width: auto;
   height: 60%;
 
 `;
@@ -157,29 +155,24 @@ const StyledCarousel = styled(Carousel)`
 function Inicio() {
   const navigate = useNavigate();
   return (
-        <>
-      <PageContainer>
-        <StyledButton onClick={() => navigate("/Clases")}>RESERVA TU CLASE</StyledButton> 
+    <PageContainer>
+      <StyledButton onClick={() => navigate("/Clases")}>RESERVA TU CLASE</StyledButton> 
       <StyledSection>
         <StyledCarousel autoPlay infiniteLoop>
           <div>
-            <img src="/Imagen1.jpg" alt="Imagen 1" />
+            <StyledImg src="/Imagen1.jpg" alt="Imagen 1" />
             <CarouselText>FITLIFE</CarouselText>
-            {/* <StyledP></StyledP> */}
             <StyledButton onClick={() => navigate("/Registrarse")}>REGISTRESE AHORA</StyledButton> 
           </div>
-           <div>
-            <img src="/yoga3.jpg" alt="Imagen 2" />
+          <div>
+            <StyledImg src="/yoga3.jpg" alt="Imagen 2" />
             <CarouselText>FITLIFE</CarouselText>
-            <StyledP> ¡APROVECHA 2X1 CLASES DE YOGA!
-            </StyledP>
+            <StyledP> ¡APROVECHA 2X1 CLASES DE YOGA!</StyledP>
             <StyledButton onClick={() => navigate("/Registrarse")}>REGISTRESE AHORA</StyledButton>
           </div> 
-           <div>
-            <img src="/boxeo1.jpg" alt="Imagen 3" />
+          <div>
+            <StyledImg src="/boxeo1.jpg" alt="Imagen 3" />
             <CarouselText>FITLIFE</CarouselText>
-            {/* <StyledP> ¡TODO EL MES DE ABRIL MATRICULA GRATIS!</StyledP> */}
-
             <StyledButton onClick={() => navigate("/Registrarse")}>REGISTRESE AHORA</StyledButton>
           </div> 
         </StyledCarousel>
@@ -187,11 +180,8 @@ function Inicio() {
       <Precios />
       <Acerca />
       <Mision />
-      </PageContainer>
-
-    </>
-    );
-  }
-
+    </PageContainer>
+  );
+}
 
 export default Inicio;
