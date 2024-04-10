@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 
 const StyledH2 = styled.h2` 
     font-size: 3em;
     text-align: center;
-    color: #ebedf1;
     margin: 20px;
     padding: 10px;
 `;
@@ -13,7 +12,7 @@ const StyledH2 = styled.h2`
 const StyledP = styled.p`
     font-size: 1.3em;
     text-align: center;
-    color: #1d1d1e;
+    color: #333;
 `;
 
 const ContactSection = styled.section`
@@ -25,7 +24,8 @@ const LeftColumn = styled.div`
   flex: 1;
     padding: 20px;
     margin: 20px;
-    border: 3px solid #3cea65;
+    border: 3px solid background-color: #232323b0;
+;
 `;
 
 const RightColumn = styled.div`
@@ -124,7 +124,7 @@ const FormContainer = styled.div`
 `;
 
 const Form = styled.form`
-   max-width: 800px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -155,7 +155,7 @@ const handleSubmit = (event) => {
 
   return (
     <ContactSection>
-     <LeftColumn>
+      <LeftColumn>
         <StyledH2>CONTACTO</StyledH2>
         <FormContainer>
             <Form onSubmit={handleSubmit}>
@@ -180,7 +180,7 @@ const handleSubmit = (event) => {
     <option value="+51">🇵🇪 +51</option>
     </StyledSelect>
     </StyledLabel>
-       
+
     <StyledLabel>
       Tipo de Consulta:
       <StyledSelect name="queryType">
