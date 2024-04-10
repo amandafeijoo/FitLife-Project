@@ -64,7 +64,7 @@ function ProfileImage() {
 
     return (
         <div>
-        <StyledProfileImage image={profileImage}>
+        <StyledProfileImage $image={profileImage}>
             <TextContainer>
                 <ImageText>Subir imagen</ImageText>
             </TextContainer>

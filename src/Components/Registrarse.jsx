@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff } from 'react-feather'; // Asegúrate de instalar react-feather para los íconos
+import { Eye, EyeOff } from 'react-feather'; // react-feather para los íconos
 
 
 const StyledH1 = styled.h1`
   text-align: center;
   font-size: 2em; 
-  color: #ebebe3;
+  color: #080807;
   margin: 10px;
   padding: 10px;
   position: relative;
   z-index: 1;
-  background: rgba(70, 103, 157, 0.6);
+  background: rgba(79, 172, 109, 0.8);
 `;
 const BackgroundContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  height: 100vh;
-  background-image: url('images/pilates.jpg');
+  min-height: 100vh; // Cambia 'height' a 'min-height'
   background-size: cover;
   background-position: center;
   border-radius: 20px;  
   overflow: auto;
- 
+
+  ::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(${props => props.src});
+    background-size: cover;
+    background-position: center;
+    opacity: 0.30; // Ajusta esta opacidad a lo que necesites
+    z-index: -1;
+  }
 `;
 
 const StyledTextarea = styled.textarea`
@@ -100,7 +111,7 @@ const FormContainer = styled.div`
   align-items: center;
   margin: 20px;
   padding: 20px;
-  border: 1px solid #6ee8ad;
+  border: 2px solid #6ee8ad;
   border-radius: 10px;
   flex-basis: 50%;
   box-sizing: border-box;
@@ -108,12 +119,11 @@ const FormContainer = styled.div`
   max-width: 850px;
   margin: 0 auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 600px;
+  margin-top: 80px; // Reduce el valor de 'margin-top'
   margin-bottom: 20px;
 
   font-size: 20px;
   color: #ecf0ed;
-
 `;
 
 const Form = styled.form`
@@ -122,7 +132,7 @@ const Form = styled.form`
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: rgba(229, 226, 226, 0.8); // Cambia el último valor para ajustar la transparencia
+  background-color: rgba(229, 226, 226, 0.8); // el último valor para ajustar la transparencia
 
 
   @media (min-width: 768px) {
@@ -162,14 +172,14 @@ function Registrarse() {
   const [passwordStrength, setPasswordStrength] = useState(null);
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [countryCode, setCountryCode] = useState("+34");
 
   const navigate = useNavigate();
 
   const handlePasswordChange = (event) => {
   setPassword(event.target.value);
   
-  // Aquí puedes calcular la fuerza de la contraseña y establecerla
-  // Por ejemplo:
+  //  calcular la fuerza de la contraseña y establecerla en el estado
   if (event.target.value.length > 8) {
     setPasswordStrength('Strong');
   } else if (event.target.value.length > 5) {
@@ -194,7 +204,7 @@ const checkPasswordsMatch = (password, confirmPassword) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(form);
-    // Aquí puedes manejar el envío del formulario, por ejemplo, haciendo una llamada a la API para registrar al usuario
+    // Aquí se podria  manejar el envío del formulario, por ejemplo, haciendo una llamada a la API para registrar al usuario
   
     // Navegar a la página de usuario después de enviar el formulario
     navigate('/PaginaUsuario', { state: { formData: form } });
@@ -209,7 +219,7 @@ const checkPasswordsMatch = (password, confirmPassword) => {
 
   return (
     <>
-    <BackgroundContainer>
+<BackgroundContainer src="/images/pilates.jpg">
       <FormContainer>
       <StyledH1>EMPIEZA A ENTRENAR CON FITLIFE</StyledH1>
     <Form onSubmit={handleSubmit}>
@@ -230,10 +240,10 @@ const checkPasswordsMatch = (password, confirmPassword) => {
       <StyledInput type="text" name="dni" value={form.dni} onChange={handleChange} pattern="\d{8}[A-Z]" title="Por favor, introduce un DNI con 8 dígitos seguidos de una letra mayúscula" required />
       </StyledLabel>
       <StyledLabel>
-  Teléfono Móvil:
+      Teléfono Móvil:
   <div style={{ display: 'flex', alignItems: 'center' }}>
-    <StyledSelect name="countryCode" style={{ marginRight: '10px' }}>
-      <option value="+34" selected> 🇪🇸 +34</option>
+  <StyledSelect name="countryCode" value={countryCode} onChange={e => setCountryCode(e.target.value)} style={{ marginRight: '10px' }}>
+      <option value="+34"> 🇪🇸 +34</option>
       <option value="+33">🇫🇷 +33</option>
       <option value="+39">🇮🇹 +39</option>
       <option value="+47">🇳🇴 +47</option>
@@ -262,7 +272,7 @@ const checkPasswordsMatch = (password, confirmPassword) => {
       value={password} 
       onChange={handlePasswordChange} 
       required 
-      style={{ paddingRight: '40px' }} // Asegúrate de que hay suficiente espacio para el ícono
+      style={{ paddingRight: '40px' }} 
     />
     <button 
       type="button" 

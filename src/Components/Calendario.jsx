@@ -97,23 +97,24 @@ return (
       <tr key={time}>
         <td>{time}</td>
         {days.map(day => {
-          const classesForThisDay = classSchedule[day];
-          const classAtThisTime = classesForThisDay.find(schedule => schedule.time === time);
-          return (
-            <ClassCell 
-  color={colors[classAtThisTime?.class]} 
-  onClick={() => classAtThisTime && onClassClick(day, classAtThisTime.time, classAtThisTime.class, classAtThisTime.instructor)}
->
-  {classAtThisTime?.class && (
-    <div>
-      <strong>{classAtThisTime.class}</strong>
-      <div>{`${classAtThisTime.time}-${classAtThisTime.endTime}`}</div>
-      <div>{classAtThisTime.instructor}</div>
-    </div>
-  )}
-</ClassCell>
-          );
-        })}
+  const classesForThisDay = classSchedule[day];
+  const classAtThisTime = classesForThisDay.find(schedule => schedule.time === time);
+  return (
+    <ClassCell 
+        key={`${day}-${time}`} // Añade una propiedad `key` única aquí
+        color={colors[classAtThisTime?.class]} 
+        onClick={() => classAtThisTime && onClassClick(day, classAtThisTime.time, classAtThisTime.class, classAtThisTime.instructor)}
+      >
+        {classAtThisTime?.class && (
+          <div>
+            <strong>{classAtThisTime.class}</strong>
+            <div>{`${classAtThisTime.time}-${classAtThisTime.endTime}`}</div>
+            <div>{classAtThisTime.instructor}</div>
+          </div>
+        )}
+    </ClassCell>
+  );
+})}
       </tr>
     ))}
     </tbody>

@@ -50,7 +50,7 @@ const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: none; 
   margin-right: 35px; // Ajusta este valor para cambiar el espacio entre los enlaces
-  font-size: 1em; // Ajusta este valor para cambiar el tamaño del texto
+  font-size: 1.2em; // Ajusta este valor para cambiar el tamaño del texto
   font-weight: 400;
 
   &:hover {
@@ -62,7 +62,7 @@ const LeftNav = styled.div`
   display: flex;
   justify-content: flex-start;
   gap:10px; // Ajusta este valor para cambiar el espacio entre los enlaces
-  margin-left: 0;
+  margin-left: 50px;
 
   @media (max-width: 768px) {
     margin-left: 0;
@@ -74,7 +74,7 @@ const RightNav = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  margin-right: 0; // Elimina el margen derecho
+  margin-right: 70px; // Elimina el margen derecho
 
   @media (max-width: 768px) {
     margin-right: 0;
@@ -83,7 +83,7 @@ const RightNav = styled.div`
 const CenterNav = styled.div`
   display: flex;
   justify-content: center;
-  margin-left: auto; // Mueve el contenido al centro
+  margin-left: 100px; // Mueve el contenido al centro
 
   
   @media (max-width: 768px) {
@@ -130,6 +130,34 @@ div {
   }
 }
 `;
+
+const Button = styled.button`
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: #d65e8a;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  padding: 10px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  display: block;
+  appearance: none;
+  border-radius: 4px;
+  width: 35%;
+  height: 35%;
+  letter-spacing: 0.5rem;
+  transition: 0.3s all;
+  cursor: pointer;
+
+  &:hover {
+    background: #6eb2d7;
+  }
+  
+  `;
+ 
+
 
 function Header({ showCalendar}) {
   const navigate = useNavigate();
@@ -181,9 +209,11 @@ function Header({ showCalendar}) {
 
                           <RightNav>
                           <StyledLink to="/IniciarSesion">
-                            <FaUser />
+                            <FaUser size={30}  />
                           </StyledLink>
-                          <StyledLink to="/Registrarse"> UNETE</StyledLink>
+                          <Button onClick={() => navigate("/Registrarse")}>
+                              ÚNETE
+                            </Button>
                           </RightNav>
             </>
           )}

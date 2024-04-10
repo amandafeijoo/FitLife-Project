@@ -23,20 +23,31 @@ const ContactSection = styled.section`
 
 const LeftColumn = styled.div`
   flex: 1;
-    padding: 20px;
-    margin: 20px;
-    border: 3px solid #3cea65;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background: rgba(83, 110, 139, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
+    box-shadow: 5px 5px 5px #333;
+    transition: transform 0.5s;
+    border: 1px solid #6dbde8;
+ 
 `;
 
 const RightColumn = styled.div`
   flex: 1;
     padding: 20px;
     margin: 20px;
+    border-radius: 10px;
+    background: rgba(83, 110, 139, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
+    box-shadow: 5px 5px 5px #333;
+    transition: transform 0.5s;
+    border: 1px solid #6dbde8;
+    display: flex;
 `;
 
 const StyledMap = styled.iframe`
-    width: 100%;
-    height: 100%;
+width: 100%;
+height: 100%;
 border-radius: 10px;
 box-shadow: 5px 5px 5px #333;
 transition: transform 0.5s;
@@ -147,6 +158,8 @@ const Form = styled.form`
 
 function Contacto() {
     const [message, setMessage] = useState("");
+    const [countryCode, setCountryCode] = useState("+34");
+    const [queryType, setQueryType] = useState("elige una opción");
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -169,29 +182,37 @@ const handleSubmit = (event) => {
     </StyledLabel>
     <StyledLabel>
       Teléfono Móvil:
-      <StyledInput type="text" name="phone" pattern="\d{9}" title="Por favor, introduce un número de teléfono de 9 dígitos" />
-      <StyledSelect name="countryCode">
-    <option value="+34" selected> 🇪🇸 +34</option>
-    <option value="+33">🇫🇷 +33</option>
-    <option value="+39">🇮🇹 +39</option>
-    <option value="+47">🇳🇴 +47</option>
-    <option value="+44">🇬🇧 +44</option>
-    <option value="+49">🇩🇪 +49</option>
-    <option value="+51">🇵🇪 +51</option>
+  <div style={{ display: 'flex', alignItems: 'center' }}>
+  <StyledSelect name="countryCode" value={countryCode} onChange={e => setCountryCode(e.target.value)} style={{ marginRight: '10px' }}>
+      <option value="+34"> 🇪🇸 +34</option>
+      <option value="+33">🇫🇷 +33</option>
+      <option value="+39">🇮🇹 +39</option>
+      <option value="+47">🇳🇴 +47</option>
+      <option value="+44">🇬🇧 +44</option>
+      <option value="+49">🇩🇪 +49</option>
+      <option value="+51">🇵🇪 +51</option>
     </StyledSelect>
-    </StyledLabel>
+    <StyledInput 
+      type="text" 
+      name="phone" 
+      pattern="\d{9}" 
+      title="Por favor, introduce un número de teléfono de 9 dígitos" 
+    />
+  </div>
+</StyledLabel>
        
-    <StyledLabel>
-      Tipo de Consulta:
-      <StyledSelect name="queryType">
-        <option value="elige una opción" selected>Elige una opción</option>
-        <option value="cuotas">Cuotas</option>
-        <option value="Clase gratuita">Clase Gratuita</option>
-        <option value="baja">Baja</option>
-        <option value="incidencias">Incidencias</option>
-        <option value="cambio de cuenta bancaria">Cambio de cuenta bancaria</option>
-      </StyledSelect>
-    </StyledLabel>
+<StyledLabel>
+            Tipo de Consulta:
+            <StyledSelect name="queryType" value={queryType} onChange={e => setQueryType(e.target.value)}>
+                <option value="elige una opción">Elige una opción</option>
+                <option value="cuotas">Cuotas</option>
+                <option value="Clase gratuita">Clase Gratuita</option>
+                <option value="baja">Baja</option>
+                <option value="incidencias">Incidencias</option>
+                <option value="cambio de cuenta bancaria">Cambio de cuenta bancaria</option>
+            </StyledSelect>
+        </StyledLabel>
+   
     <StyledLabel>
       Mensaje:
       <StyledTextarea name="message"></StyledTextarea>
@@ -203,14 +224,14 @@ const handleSubmit = (event) => {
 </LeftColumn>
       
       <RightColumn>
-        <StyledMap
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.681505727711!2d2.185046315424378!3d41.40078997926413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2fc23bb948d%3A0xa0f5c2ca741c49b4!2sCarrer%20de%20Lepant%2C%20150%2C%2008013%20Barcelona%2C%20Spain!5e0!3m2!1sen!2sus!4v1638487251234!5m2!1sen!2sus"
-          width="600"
-          height="450"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-        />
+      <StyledMap
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.681505727711!2d2.185046315424378!3d41.40078997926413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2fc23bb948d%3A0xa0f5c2ca741c49b4!2sCarrer%20de%20Lepant%2C%20150%2C%2008013%20Barcelona%2C%20Spain!5e0!3m2!1sen!2sus!4v1638487251234!5m2!1sen!2sus"
+            width="600"
+            height="450"
+            style={{ border: 0 }}
+            allow="fullscreen"
+            loading="lazy"
+/>
       </RightColumn>
 
     </ContactSection>

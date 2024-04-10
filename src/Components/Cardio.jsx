@@ -41,8 +41,8 @@ const TextContainerInside = styled.div`
     `;
 
 const StyledH1 = styled.h1`
-  margin-top: 10px;
-  text-align: center;
+  margin-bottom: 0px;
+  margin-top: -50px;  text-align: center;
   color: white;
   font-size: 100px;
   padding-bottom: 0px;

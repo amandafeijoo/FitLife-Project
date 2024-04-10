@@ -1,6 +1,6 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
+import React, { Suspense, lazy } from 'react';
 import Header from './Components/Header';
 import Inicio from './Components/Inicio';
 import Acerca from './Components/Acerca';
@@ -33,7 +33,7 @@ import ClaseGratuita from './Components/ClaseGratuita';
 // import { ReservacionesContext } from './Components/ReservacionesContext';
 
 const ContentContainer = styled.div`
-  padding-top: 170px; // Ajusta este valor según la altura de tu barra de navegación
+  padding-top: 140px; // Ajusta este valor según la altura de tu barra de navegación
 `;
 const GlobalStyle = createGlobalStyle`
  
@@ -48,6 +48,8 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 `;
+
+
 
 // export function ReservacionesProvider({ children }) {
 //   const [reservacionesYoga, setReservacionesYoga] = React.useState(null);
@@ -72,8 +74,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
-
-
 
 
   return (

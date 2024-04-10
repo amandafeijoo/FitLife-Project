@@ -18,7 +18,7 @@ const StyledH1 = styled.h1`
   font-size: 4em;
   color: #eceaea;
   text-align: center;
-  background-image: url('/perfil.jpg');
+  background-image: url(${props => props.$image});
   background-size: cover;
   background-position: center;
   background-attachment: scroll;
@@ -124,8 +124,7 @@ function PaginaUsuario() {
            <div>
                 <ProfileImage image={profileImage} />
           </div>
-            <StyledH1>¡Hola, Bienvenido, {usuario.nombre}!</StyledH1>
-            <StyledP>¡Gracias por ser parte de nuestra comunidad FITLIFE!
+            <StyledH1 $image="/perfil.jpg">¡Hola, Bienvenido, {usuario.nombre}!</StyledH1>            <StyledP>¡Gracias por ser parte de nuestra comunidad FITLIFE!
                 <br/>
                   <br/>
                   Estos son tus datos:

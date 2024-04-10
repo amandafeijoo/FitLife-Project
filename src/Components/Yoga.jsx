@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavigationLinks from './NavigationLinks';
 import ClaseGratuita from './ClaseGratuita';
-import ReservarClase from './ReservarClase';
 
 
 
@@ -45,11 +44,12 @@ const TextContainerInside = styled.div`
     `;
 
 const StyledH1 = styled.h1`
-   margin-top: 10px;
   text-align: center;
   color: white;
   font-size: 100px;
   padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: -50px;
 `;
 
 
@@ -107,7 +107,7 @@ const StyledLink = styled(Link)`
 
     }
 `;
-const images = ["yoga1.jpg", "formyoga.jpg"]; // Reemplaza con las rutas a tus imágenes
+const images = ["yoga1.jpg", "formyoga.jpg"]; 
 
 function Yoga() {
   const classes = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
