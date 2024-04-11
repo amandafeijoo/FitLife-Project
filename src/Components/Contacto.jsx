@@ -7,6 +7,17 @@ const StyledH2 = styled.h2`
     text-align: center;
     margin: 20px;
     padding: 10px;
+    color: #e1f5e6;
+    text-shadow: 2px 2px 2px #333;
+    border-radius: 10px;
+    background: rgba(198, 235, 180, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
+    box-shadow: 5px 5px 5px #333;
+    transition: transform 0.5s;
+    border: 1px solid #80e86d;
+    &:hover {
+        transform: scale(1.1);
+    }
+    
 `;
 
 const StyledP = styled.p`
@@ -28,7 +39,7 @@ const LeftColumn = styled.div`
     background: rgba(83, 110, 139, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
     box-shadow: 5px 5px 5px #333;
     transition: transform 0.5s;
-    border: 1px solid #6dbde8;
+    border: 1px solid #80e86d;
  
 `;
 
@@ -40,7 +51,7 @@ const RightColumn = styled.div`
     background: rgba(83, 110, 139, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
     box-shadow: 5px 5px 5px #333;
     transition: transform 0.5s;
-    border: 1px solid #6dbde8;
+    border: 1px solid #9adc67;
     display: flex;
 `;
 
@@ -118,7 +129,7 @@ const FormContainer = styled.div`
   align-items: center;
   margin: 20px;
   padding: 20px;
-  border: 1px solid #6dbde8;  
+  border: 1px solid #80e86d;  
   background: rgba(83, 110, 139, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
   border-radius: 10px;
   flex-basis: 50%;
@@ -168,7 +179,7 @@ const handleSubmit = (event) => {
   return (
     <ContactSection>
       <LeftColumn>
-        <StyledH2>CONTACTO</StyledH2>
+        <StyledH2>CONTÁCTANOS</StyledH2>
         <FormContainer>
             <Form onSubmit={handleSubmit}>
     <StyledLabel>

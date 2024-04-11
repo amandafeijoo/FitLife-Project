@@ -174,7 +174,7 @@ function IniciarSesion({ onLogin }) {
   <StyledInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 </StyledLabel>
     <div>
-    <Button type="submit">Iniciar sesión</Button> {/* Aquí cambiamos el onClick por type="submit" para que se ejecute handleSubmit cuando se haga clic en el botón */}
+    <Button type="submit">Iniciar sesión</Button> 
       {sesionIniciada && <p>Sesión iniciada</p>}
     </div>
     {/* <button onClick={handleSubmit}>Iniciar sesión</button> esto ya sera cuando hay datos reales */}

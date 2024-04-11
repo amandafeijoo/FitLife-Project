@@ -45,7 +45,6 @@ position: relative;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  /* position: relative; */
   transform-style: preserve-3d;
   transform: ${props => props.isFlipped ? 'rotateY(180deg)' : 'none'};
 `;
@@ -54,7 +53,6 @@ const CardFront = styled.div`
   height: 100%;
   position: absolute;
   backface-visibility: hidden;
-  /* ...estilos para el frente de la tarjeta... */
 `;
 
 const CardBack = styled.div`
@@ -64,7 +62,6 @@ const CardBack = styled.div`
   backface-visibility: hidden;
   transform: rotateY(180deg);
   background-color: #363737;
-  /* ...estilos para el dorso de la tarjeta... */
 `;
 
 const BackText = styled.p`
@@ -72,7 +69,6 @@ const BackText = styled.p`
   text-align: justify;
   color: #beacac;
   padding: 5rem;
-  /* ...otros estilos que quieras aplicar... */
 `;
 
 const Image = styled.img`

@@ -99,7 +99,7 @@ const StyledLink = styled(Link)`
     width: 900px;
   }
 `;
-const images = ["fuerza2.jpg", "fuerza3.jpg"]; // Reemplaza con las rutas a tus imágenes
+const images = ["fuerza2.jpg", "fuerza3.jpg"]; 
 
 function Fuerza() {
 

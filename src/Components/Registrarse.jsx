@@ -18,7 +18,7 @@ const BackgroundContainer = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  min-height: 100vh; // Cambia 'height' a 'min-height'
+  min-height: 100vh; 
   background-size: cover;
   background-position: center;
   border-radius: 20px;  
@@ -34,7 +34,7 @@ const BackgroundContainer = styled.div`
     background-image: url(${props => props.src});
     background-size: cover;
     background-position: center;
-    opacity: 0.30; // Ajusta esta opacidad a lo que necesites
+    opacity: 0.30; // Ajusta opacidad 
     z-index: -1;
   }
 `;
@@ -119,7 +119,7 @@ const FormContainer = styled.div`
   max-width: 850px;
   margin: 0 auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 80px; // Reduce el valor de 'margin-top'
+  margin-top: 80px; 
   margin-bottom: 20px;
 
   font-size: 20px;

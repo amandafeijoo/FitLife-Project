@@ -194,7 +194,6 @@ function ReservarClase () {
   };
 
   const onClassClick = (day, time, classType, instructor) => {
-    // Aquí va tu lógica para manejar el clic en una clase...
     setSelectedDate({ day, time, classType, instructor }); // establece la clase seleccionada
     setModalIsOpen(false); // cierra el modal
   };

@@ -101,7 +101,7 @@ return (
   const classAtThisTime = classesForThisDay.find(schedule => schedule.time === time);
   return (
     <ClassCell 
-        key={`${day}-${time}`} // Añade una propiedad `key` única aquí
+        key={`${day}-${time}`} 
         color={colors[classAtThisTime?.class]} 
         onClick={() => classAtThisTime && onClassClick(day, classAtThisTime.time, classAtThisTime.class, classAtThisTime.instructor)}
       >

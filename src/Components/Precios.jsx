@@ -55,15 +55,26 @@ const Benefits = styled.ul`
   font-weight: 400;
 `;
 const StyledH1 = styled.h1`
-  font-size: 4em;
-  color: #6dade8;
-  text-align: center;
+  font-size: 5em;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    color: #e1f5e6;
+    text-shadow: 2px 2px 2px #333;
+    border-radius: 10px;
+    background: rgba(231, 154, 162, 0.5); // Ajusta el último valor (0.5) para cambiar la transparencia
+    box-shadow: 5px 5px 5px #333;
+    transition: transform 0.5s;
+    border: 1px solid #e16673;
+    &:hover {
+        transform: scale(1.1);
+    }
 `;
 
 const StyledP = styled.p`
   font-size: 1.5em;
   text-align: center;
-  color: #353536;
+  color: #0c0c0c;
 `;
 
 const CardContainer = styled.div`
@@ -77,14 +88,14 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px solid #eb7377;
+  border: 2px solid #edc917;
   background-color: #f3f0f0;
   border-radius: 4px;
   padding: 20px;
   margin: 20px;
   &:hover {
-    transform: translateY(-10px);
-  }  
+        transform: scale(1.1);
+    }  
 `;
 
 const ButtonContainer = styled.div`

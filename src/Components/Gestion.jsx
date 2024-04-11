@@ -72,7 +72,6 @@ const [changes, setChanges] = useState([]);
     { hora: '12:00 - 13:00 AM', actividad: 'Clase de boxeo intermedia (Boxeo)', instructor: 'Nombre del instructor',dia: 'Lunes' },
     { hora: '18:00 - 19:00 AM', actividad: 'Pilates de nivel principiante (Pilates)', instructor: 'Nombre del instructor', dia: 'Lunes'},
     { hora: '19:30 - 20:30 AM', actividad: 'Clase de cardio intenso (Cardio)', instructor: 'Nombre del instructor', dia: 'Lunes'},
-    // ...resto de actividades del lunes
   ],
 
   martes: [ 
@@ -80,7 +79,6 @@ const [changes, setChanges] = useState([]);
     { hora: '10:00 - 11:00 AM', actividad: ' Yoga restaurativo (Yoga)', instructor: 'Nombre del instructor',dia: 'Martes'},
     { hora: '18:00 - 19:00 AM', actividad: 'Clase de boxeo para principiantes (Boxeo)', instructor: 'Nombre del instructor', dia: 'Martes'},
     { hora: '19:30 - 20:30 AM', actividad: 'Pilates avanzado (Pilates)', instructor: 'Nombre del instructor', dia: 'Martes'},
-    // ...resto de actividades del martes
   ],
 
   miercoles: [
@@ -88,7 +86,6 @@ const [changes, setChanges] = useState([]);
     { hora: '12:00 - 13:00 AM', actividad: 'Clase de cardio y tonificación (Cardio/Fuerza)', instructor: 'Nombre del instructor',dia: 'Miércoles'},
     { hora: '17:30 - 18:30 AM', actividad: 'Boxeo de alta intensidad (Boxeo)', instructor: 'Nombre del instructor', dia: 'Miércoles'},
     { hora: '19:00 - 20:00 AM', actividad: 'Yoga suave y meditación (Yoga)', instructor: 'Nombre del instructor', dia: 'Miércoles'},
-    // ...resto de actividades del miercoles
   ],
 
   jueves: [
@@ -96,7 +93,6 @@ const [changes, setChanges] = useState([]);
     { hora: '10:00 - 11:00 AM', actividad: 'Pilates mat (Pilates)', instructor: 'Nombre del instructor',dia: 'Jueves'},
     { hora: '18:00 - 19:00 AM', actividad: 'Clase de boxeo avanzado (Boxeo)', instructor: 'Nombre del instructor',dia: 'Jueves'},
     { hora: '19:30 - 20:00 AM', actividad: 'Yoga para la flexibilidad (Yoga)', instructor: 'Nombre del instructor',dia: 'Jueves'},
-    // ...resto de actividades del jueves
   ],
 
   viernes: [
@@ -104,7 +100,6 @@ const [changes, setChanges] = useState([]);
     { hora: '12:00 - 13:00 AM', actividad: ' Yoga al aire libre (Yoga)', instructor: 'Nombre del instructor',dia: 'Viernes'},
     { hora: '17:30 - 18:30 AM', actividad: ' Clase de boxeo y entrenamiento en circuito (Boxeo/Fuerza)', instructor: 'Nombre del instructor',dia: 'Viernes'},
     { hora: '19:00 - 20:00 AM', actividad: ' Pilates de nivel intermedio (Pilates)', instructor: 'Nombre del instructor',dia: 'Viernes'},
-    // ...resto de actividades del viernes
   ],
 
   sabado: [
@@ -112,14 +107,12 @@ const [changes, setChanges] = useState([]);
     { hora: '10:30 - 11:30 AM', actividad: ' Yoga al aire libre (Yoga)', instructor: 'Nombre del instructor',dia: 'Sábado'},
     { hora: '12:00 - 13:00 AM', actividad: ' Clase de boxeo y entrenamiento en circuito (Boxeo/Fuerza)', instructor: 'Nombre del instructor',dia: 'Sábado'},
     { hora: '16:00 - 17:00 AM', actividad: 'Pilates para la postura (Pilates)', instructor: 'Nombre del instructor',dia: 'Sábado'},
-    // ...resto de actividades del sabado
   ],
   domingo: [
     { hora: '10:00 - 11:00 AM', actividad: 'Clase de yoga de relajación y estiramiento (Yoga)', instructor: 'Nombre del instructor',dia: 'Domingo'},
     { hora: '11:30 - 12:00 AM', actividad: 'Cardio Kickboxing (Cardio)', instructor: 'Nombre del instructor',dia: 'Domingo'},
     { hora: '13:00 - 14:00 AM', actividad: 'Clase de fuerza total del cuerpo (Fuerza)', instructor: 'Nombre del instructor',dia: 'Domingo'},
     { hora: '15:00 - 16:00 AM', actividad: 'Pilates con equipo (Pilates)', instructor: 'Nombre del instructor',dia: 'Domingo'},
-    // ...resto de actividades del domingo
   ],
   });
 
