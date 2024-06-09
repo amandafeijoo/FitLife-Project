@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -147,18 +148,52 @@ function IniciarSesion({ onLogin }) {
   }
 
   const navigate = useNavigate();
+  const location = useLocation();
   const handleSubmit = (event) => {
     event.preventDefault();
   
     const username = event.target.elements.username.value;
     const password = event.target.elements.password.value;
   
+//   // Hacer una solicitud POST al servidor para iniciar sesión
+//   const response = await fetch('https://tu-servidor.com/api/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ username, password })
+//   });
+
+//   if (response.ok) {
+//     // Si la respuesta es exitosa, obtener el token de autenticación del cuerpo de la respuesta
+//     const { token } = await response.json();
+
+//     // Guardar el token en el almacenamiento local
+//     localStorage.setItem('authToken', token);
+
+//     // Luego, obtener la ruta de redirección de los parámetros de la URL
+//     const redirect = location.state?.redirect;
+
+//     // Y redirigir al usuario a la ruta de redirección, o a la página de usuario si no hay ninguna ruta de redirección
+//     navigate(redirect || '/PaginaUsuario', { state: { username, membresia: 'Membresía Usuario' } });
+//   } else {
+//     // Si la respuesta no es exitosa, mostrar un mensaje de error
+//     console.error('Error al iniciar sesión');
+//   }
+// };
+
+  
+    // Luego, obtener la ruta de redirección de los parámetros de la URL
+    const redirect = location.state?.redirect;
+  
     if (username === 'pilarcantarero' && password === '1234') {
-      navigate('/Gestion', { state: { username, initialMembresia: 'Membresía Administrador' } });
+      // Y redirigir al usuario a la ruta de redirección, o a la página de gestión si no hay ninguna ruta de redirección
+      navigate(redirect || '/Gestion', { state: { username, initialMembresia: 'Membresía Administrador' } });
     } else {
-      navigate('/PaginaUsuario', { state: { username, membresia: 'Membresía Usuario' } });
+      // Y redirigir al usuario a la ruta de redirección, o a la página de usuario si no hay ninguna ruta de redirección
+      navigate(redirect || '/PaginaUsuario', { state: { username, membresia: 'Membresía Usuario' } });
     }
-  };
+  };/// switch para redirigir a la pagina de usuario o a la de administrador
     
   return (
   <BackgroundContainer>

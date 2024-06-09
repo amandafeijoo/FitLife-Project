@@ -2,15 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import NavigationLinks from './NavigationLinks';
-import Calendario from './Calendario';
-
+import NavigationLinks from '../NavigationLinks';
+import CalendarioYoga from './CalendarioDeClases/CalendarioYoga';
+import { useEffect } from 'react';
 
 // import { ReservacionesContext } from '../ReservacionesContext';
 
@@ -57,6 +57,8 @@ const StyledSelect = styled.select`
   padding: 10px 15px;
   margin-bottom: 15px;
   font-size: 14px;
+  padding: 0 10px;
+  height: 40px;
 `;
 
 const StyledInput = styled.input`
@@ -68,6 +70,7 @@ const StyledInput = styled.input`
   padding: 10px 15px;
   margin-bottom: 15px;
   font-size: 14px;
+  height: 40px;
 `;
 
 const StyledLabel = styled.label`
@@ -133,6 +136,8 @@ const Form = styled.form`
   border-radius: 4px;
   background-color: rgba(229, 226, 226, 0.8); // Cambia el último valor para ajustar la transparencia
 
+  
+
 
   @media (min-width: 768px) {
     width: 500px;
@@ -169,7 +174,7 @@ const messages = {
 Modal.setAppElement('#root');
 
 
-function ReservarClase () {
+function ReservarClaseYoga () {
   // const { setFormulario } = React.useContext(ReservacionesContext);
   const classes = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
   const currentClassIndex = classes.indexOf('Yoga');
@@ -184,30 +189,53 @@ function ReservarClase () {
 
   const navigate = useNavigate();
 
+ 
+  // const handleReservarClick = (event) => {
+  //   event.preventDefault();
+  //   //manejar el registro
+  //   console.log(`Registrando con usuario: ${username}, email: ${email} y contraseña: ${password}`);
+  //   navigate('/IniciarSesion');
+  // };
 
-  
+
+
   const handleReservarClick = (event) => {
     event.preventDefault();
-    //manejar el registro
-    console.log(`Registrando con usuario: ${username}, email: ${email} y contraseña: ${password}`);
-    navigate('/PaginaUsuario');
-  };
+  
+    // Verificar si el usuario está logueado
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // Si el usuario está logueado, proceder con la reserva
+      console.log(`Registrando con usuario: ${username}, email: ${email} y contraseña: ${password}`);
+      // Aquí deberías guardar la reserva en la base de datos
+    } else {
+      // Si el usuario no está logueado, redirigirlo a la página de inicio de sesión y pasar la ruta de la página de reserva como un parámetro
+      navigate('/IniciarSesion', { state: { redirect: '/ReservarClases/ReservarClaseYoga' } });
+    }
+  };useEffect(() => {
+    // Verificar si el usuario está logueado
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // Si el usuario está logueado, completar la reserva
+      console.log(`Registrando con usuario: ${username}, email: ${email} y contraseña: ${password}`);
+      // Aquí deberías guardar la reserva en la base de datos
+    }
+  }, []);
 
   const onClassClick = (day, time, classType, instructor) => {
     setSelectedDate({ day, time, classType, instructor }); // establece la clase seleccionada
-    setModalIsOpen(false); // cierra el modal
+    setModalIsOpen(false); 
   };
-
+  
   const handleSelectEvent = event => {
     console.log('Before setModalIsOpen: ', modalIsOpen);
-    setModalIsOpen(false);
+    setModalIsOpen(true);
     console.log('After setModalIsOpen: ', modalIsOpen);
   
     console.log('Before setValue: ', getValues('date'));
     setValue('date', event.start);
     console.log('After setValue: ', getValues('date'));
   };
-
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -221,45 +249,73 @@ return (
       <FormContainer>
         {!showCalendar && <StyledH1>RESERVA TU CLASE DE YOGA</StyledH1>}  
         <Form onSubmit={handleSubmit}>
-          <StyledLabel>
+          {/* <StyledLabel>
             Usuario:
             <StyledInput {...register('usuario')} required />
           </StyledLabel>
           <StyledLabel>
             Contraseña:
             <StyledInput {...register('password')} type="password" required />
-          </StyledLabel>
+          </StyledLabel> */}
           <StyledLabel>
-            Fecha y hora:
-            <br />
-            <br />
-            <Button type="button" onClick={handleOpenModal}>Seleccionar</Button>
-            <br />
-            <br />
-            <StyledInput type="text" value={selectedDate ? `${selectedDate.day} / ${selectedDate.time}/ ${selectedDate.classType}/ ${selectedDate.instructor}` : ''} readOnly />            <Modal
-              isOpen={modalIsOpen}
-              onRequestClose={() => setModalIsOpen(false)}
-            >
-              {showCalendar && (
-                <Calendario
-                  localizer={localizer}
-                  events={events}
-                  startAccessor="start"
-                  endAccessor="end"
-                  style={{ height: 500 }}
-                  views={['week', 'day']}
-                  defaultView='week'
-                  messages={messages}
-                  onClassClick={onClassClick}
-                />
-              )}
-            </Modal>
-          </StyledLabel>
-          <Button type="submit" onClick={handleReservarClick}>Reservar</Button>
-        </Form>
-      </FormContainer>
-    </BackgroundContainer>
-  </>
-);
+    Elige tu Instructor:
+    <StyledSelect {...register('clase')} required>
+        <option value="">Selecciona un instructor</option>
+        <option value="Marta">Marta</option>
+        <option value="Laura">Laura</option>
+        <option value="Cualquiera">Cualquiera</option>
+    </StyledSelect>
+</StyledLabel>
+<StyledLabel>
+  Fecha y hora:
+</StyledLabel>
+<Button type="button" onClick={handleOpenModal}>
+  Seleccionar
+</Button>
+<br />
+<StyledInput type="text" value={selectedDate ? `${selectedDate.day} / ${selectedDate.time}/ ${selectedDate.classType}/ ${selectedDate.instructor}` : ''} readOnly />            
+<Modal
+  isOpen={modalIsOpen}
+  onRequestClose={() => setModalIsOpen(false)}
+  style={{
+    content: {
+      padding: '0', // Elimina el padding
+      margin: 'auto', // Centra el modal
+      display: 'flex', // Asegura que el contenido se estira para llenar el espacio disponible
+      flexDirection: 'column', // Asegura que el contenido se estira en la dirección correcta
+      height: '70vh', // Ajusta la altura del modal al 60% de la altura de la ventana
+      width: '70vw', // Ajusta la anchura del modal al 60% de la anchura de la ventana
+      overflow: 'auto', // Añade barras de desplazamiento si el contenido es demasiado grande
+      position: 'absolute', // Permite centrar el modal
+      top: '90%', // Centra el modal verticalmente
+      left: '50%', // Centra el modal horizontalmente
+      transform: 'translate(-50%, -50%)', // Asegura que el modal está centrado
+    },
+  }}
+>
+  {showCalendar && (
+    <CalendarioYoga
+      localizer={localizer}
+      events={events}
+      startAccessor="start"
+      endAccessor="end"
+      style={{ height: 200 }}
+      views={['week', 'day']}
+      defaultView='week'
+      messages={messages}
+      onClassClick={onClassClick}
+    />
+  )}
+</Modal>
+<Button type="submit" onClick={handleReservarClick}>Reservar</Button>
+</Form>
+</FormContainer>
+</BackgroundContainer>
+</>
+         
+      
+  );
+
 }
-export default ReservarClase; 
+
+export default ReservarClaseYoga; 

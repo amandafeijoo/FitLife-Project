@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebook,FaSpotify } from 'react-icons/fa';
 
 // Componente de estilo para los iconos
 const StyledIcon = styled.a`
-  color: #000; 
+  color: #e69b9b; 
   margin: 0 10px; // Añade margen alrededor de los iconos
   transition: color 0.2s ease-in-out;
 

@@ -125,7 +125,7 @@ function Pilates() {
     <div>
       <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>PILATES</StyledH1>
-      <StyledLink to="/ReservarClase">
+      <StyledLink to="/ReservarClases/ReservarClasePilates">
         <Button>Reservar Clase</Button>
       </StyledLink>
       <TopContainer>

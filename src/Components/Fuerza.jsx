@@ -119,7 +119,7 @@ function Fuerza() {
     <div>
             <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>FUERZA</StyledH1>
-    <StyledLink to="/ReservarClase">
+    <StyledLink to="/ReservarClases/ReservarClaseFuerza">
             <Button>Reservar Clase</Button>
         </StyledLink>         
         <TopContainer>

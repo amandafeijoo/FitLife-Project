@@ -126,7 +126,7 @@ function Yoga() {
     <div>
       <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>YOGA </StyledH1>
-          <StyledLink to="/ReservarClase">
+          <StyledLink to="/ReservarClase/ReservarClaseYoga">
             <Button>Reservar Clase</Button>
           </StyledLink>
       <TopContainer>

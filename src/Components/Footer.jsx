@@ -7,13 +7,13 @@ const FooterContainer = styled.footer`
   justify-content: space-between;
   padding: 20px;
   background-color: #333;
-  color: rgba(244, 242, 241, 0.691);
+  color: rgba(251, 250, 249, 0.691);
     flex-direction: row;
     font-size: 1em;
     text-align: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
 
 
     @media (max-width: 768px) {
@@ -48,6 +48,14 @@ const FooterSection = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    h2 {
+        margin-top: 0; // Elimina el margen superior
+        margin-bottom: 0.5em; // Ajusta este valor según tus necesidades
+    }
+
+    p {
+        margin-top: 0; // Elimina el margen superior
+    }
     `;
 
 

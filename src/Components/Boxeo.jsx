@@ -132,7 +132,7 @@ function Boxeo () {
     <div>
       <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>BOXEO</StyledH1>
-      <StyledLink to="/ReservarClase">
+      <StyledLink to="/ReservarClases/ReservarClaseBoxeo">
             <Button>Reservar Clase</Button>
           </StyledLink>
 <TopContainer>

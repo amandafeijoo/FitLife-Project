@@ -7,7 +7,8 @@ import SocialMediaLogos from './SocialMediaLogos';
 
 
 const StyledH1 = styled.h1`
-  font-size: 3em;
+  font-size: 4em;
+  font-weight: bold;
   color: #6dade8;
   text-align: center;
   margin: 20px;
@@ -29,10 +30,9 @@ const StyledHeader = styled.header`
   gap: 40px;
   align-items: center;
   font-size: 1.2em; 
-  color: #000000; 
+  color: #2b68a1; 
   backdrop-filter: blur(10px);
-  background-color: ${props => props.$scrolled ? 'rgba(220,220,220,0.5)' : 'transparent'}; // Cambia el color de fondo cuando se desplaza
-  transition: background-color 0.3s ease;
+  background-color: ${props => 'rgba(31, 31, 31, 0.8)'}; // Siempre oscuro  transition: background-color 0.3s ease;
   width: 100%;
   top: 0;
   left: 0;
@@ -54,7 +54,7 @@ const StyledLink = styled(Link)`
   font-weight: 400;
 
   &:hover {
-    color:  rgba(14, 112, 231, 0.691); // Cambia el color al pasar el mouse
+    color:  rgba(233, 236, 240, 0.691); // Cambia el color al pasar el mouse
   }
   
 `;
@@ -135,7 +135,7 @@ const Button = styled.button`
   justify-content: center;
   text-align: center;
   position: relative;
-  background: #d65e8a;
+  background: #dd7f7f;
   color: white;
   text-transform: uppercase;
   border: none;

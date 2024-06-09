@@ -2,14 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import {  momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import NavigationLinks from '../NavigationLinks';
-
+import CalendarioPilates from './CalendarioDeClases/CalendarioPilates';
 
 const StyledH1 = styled.h1`
   text-align: center;
@@ -146,39 +146,37 @@ const Form = styled.form`
 moment.locale('es');
 const localizer = momentLocalizer(moment);
 
+
+const events = [
+  {
+    start: moment().toDate(),
+    end: moment().add(1, "days").toDate(),
+    title: "Some title"
+  }
+];
 const messages = {
-  allDay: 'Todo el día',
-  previous: 'Anterior',
-  next: 'Siguiente',
-  today: 'Hoy',
-  month: 'Mes',
-  week: 'Semana',
-  day: 'Día',
-  agenda: 'Agenda',
-  date: 'Fecha',
-  time: 'Hora',
-  event: 'Evento',
-  showMore: total => `+ Ver más (${total})`,
-  noEventsInRange: 'No hay eventos en este rango',
-  showMore: total => `+ ${total} más`,
-  monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-  dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-  dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+  next: "Siguiente",
+  previous: "Anterior",
+  today: "Hoy",
+  month: "Mes",
+  week: "Semana",
+  day: "Día"
 };
 
-
 Modal.setAppElement('#root');
+
 
 function ReservarClasePilates () {
   const classes = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
   const currentClassIndex = classes.indexOf('Yoga');
-  const { register, handleSubmit, setValue } = useForm();
   const [showCalendar, setShowCalendar] = useState(false); 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const { register, handleSubmit, setValue, getValues } = useForm();
+
 
   const navigate = useNavigate();
 
@@ -189,73 +187,29 @@ function ReservarClasePilates () {
     navigate('/PaginaUsuario');
   };
 
-  const handleSelectEvent = event => {
-    setSelectedDate(event.start);
-    setModalIsOpen(false);
-    setShowCalendar(true);
-    setValue('date', event.start);
+  const onClassClick = (day, time, classType, instructor) => {
+    setSelectedDate({ day, time, classType, instructor }); // establece la clase seleccionada
+    setModalIsOpen(false); 
   };
+  
+
+  const handleSelectEvent = event => {
+    console.log('Before setModalIsOpen: ', modalIsOpen);
+    setModalIsOpen(true);
+    console.log('After setModalIsOpen: ', modalIsOpen);
+  
+    console.log('Before setValue: ', getValues('date'));
+    setValue('date', event.start);
+    console.log('After setValue: ', getValues('date'));
+  };
+
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
     setShowCalendar(true);
   };
-  
-  // const onSubmit = data => {
-  //   console.log(data);
-  //   // Aquí puedes manejar la presentación del formulario, por ejemplo, enviando los datos a Firebase
-  // };
 
-  
-
-  const events = [];
-
-for (let week = 0; week < 52; week++) {
-  events.push(
-    {
-        start: new Date(moment().weekday(1).add(week, 'weeks').year(), moment().weekday(1).add(week, 'weeks').month(), moment().weekday(1).add(week, 'weeks').date(), 17, 30), 
-        end: new Date(moment().weekday(1).add(week, 'weeks').year(), moment().weekday(1).add(week, 'weeks').month(), moment().weekday(1).add(week, 'weeks').date(), 18, 30), 
-        title: 'Principiantes',
-      },
-
-      {
-        start: new Date(moment().weekday(2).add(week, 'weeks').year(), moment().weekday(2).add(week, 'weeks').month(), moment().weekday(2).add(week, 'weeks').date(), 19, 30), 
-        end: new Date(moment().weekday(2).add(week, 'weeks').year(), moment().weekday(2).add(week, 'weeks').month(), moment().weekday(2).add(week, 'weeks').date(), 20, 30), 
-        title: 'Avanzado',
-      },
-  
-      {
-        start: new Date(moment().weekday(3).add(week, 'weeks').year(), moment().weekday(3).add(week, 'weeks').month(), moment().weekday(3).add(week, 'weeks').date(), 19, 0),
-        end: new Date(moment().weekday(3).add(week, 'weeks').year(), moment().weekday(3).add(week, 'weeks').month(), moment().weekday(3).add(week, 'weeks').date(), 20, 0), 
-        title: 'Intermedio',
-      },
-  
-      {
-        start: new Date(moment().weekday(4).add(week, 'weeks').year(), moment().weekday(4).add(week, 'weeks').month(), moment().weekday(4).add(week, 'weeks').date(), 10, 0), 
-        end: new Date(moment().weekday(4).add(week, 'weeks').year(), moment().weekday(4).add(week, 'weeks').month(), moment().weekday(4).add(week, 'weeks').date(), 11, 0), 
-        title: 'Mat',
-      },
-      {
-        start: new Date(moment().weekday(5).add(week, 'weeks').year(), moment().weekday(5).add(week, 'weeks').month(), moment().weekday(5).add(week, 'weeks').date(), 19, 0), 
-        end: new Date(moment().weekday(5).add(week, 'weeks').year(), moment().weekday(5).add(week, 'weeks').month(), moment().weekday(5).add(week, 'weeks').date(), 20, 0), 
-        title: 'Intermedio',
-      },
-  
-      {
-        start: new Date(moment().weekday(6).add(week, 'weeks').year(), moment().weekday(6).add(week, 'weeks').month(), moment().weekday(6).add(week, 'weeks').date(), 16, 0), 
-        end: new Date(moment().weekday(6).add(week, 'weeks').year(), moment().weekday(6).add(week, 'weeks').month(), moment().weekday(6).add(week, 'weeks').date(), 17, 0), 
-        title: 'Postura',
-      },
-  
-      {
-        start: new Date(moment().weekday(7).add(week, 'weeks').year(), moment().weekday(7).add(week, 'weeks').month(), moment().weekday(7).add(week, 'weeks').date(), 15, 0), 
-        end: new Date(moment().weekday(7).add(week, 'weeks').year(), moment().weekday(7).add(week, 'weeks').month(), moment().weekday(7).add(week, 'weeks').date(), 16, 0), 
-        title: 'Con Equipo',
-      },
-    );
-  }
-
-  
+   
   return (
     <>
     <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
@@ -289,25 +243,40 @@ for (let week = 0; week < 52; week++) {
             </Button>
           <br />
           <br />
-            <StyledInput type="text" {...register('date')} readOnly />
+          <StyledInput type="text" value={selectedDate ? `${selectedDate.day} / ${selectedDate.time}/ ${selectedDate.classType}/ ${selectedDate.instructor}` : ''} readOnly />            
             <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={() => setModalIsOpen(false)}
-                >
-              {showCalendar && (
-                <Calendar
-                  localizer={localizer}
-                  events={events}
-                  startAccessor="start"
-                  endAccessor="end"
-                  style={{ height: 500 }}
-                  views={['week', 'day']}
-                  defaultView='week'
-                  messages={messages}
-                  onSelectEvent={handleSelectEvent}
-                />
-              )}
-            </Modal>
+    isOpen={modalIsOpen}
+  onRequestClose={() => setModalIsOpen(false)}
+  style={{
+    content: {
+      padding: '0', // Elimina el padding
+      margin: 'auto', // Centra el modal
+      display: 'flex', // Asegura que el contenido se estira para llenar el espacio disponible
+      flexDirection: 'column', // Asegura que el contenido se estira en la dirección correcta
+      height: '70vh', // Ajusta la altura del modal al 60% de la altura de la ventana
+      width: '70vw', // Ajusta la anchura del modal al 60% de la anchura de la ventana
+      overflow: 'auto', // Añade barras de desplazamiento si el contenido es demasiado grande
+      position: 'absolute', // Permite centrar el modal
+      top: '90%', // Centra el modal verticalmente
+      left: '50%', // Centra el modal horizontalmente
+      transform: 'translate(-50%, -50%)', // Asegura que el modal está centrado
+    },
+  }}
+>
+  {showCalendar && (
+   <CalendarioPilates
+   localizer={localizer}
+   events={events}
+   startAccessor="start"
+   endAccessor="end"
+   style={{ height: 200 }}
+   views={['week', 'day']}
+   defaultView='week'
+   messages={messages}
+   onClassClick={onClassClick}
+ />
+  )}
+</Modal>
             </StyledLabel>
             <Button type="submit" onClick={handleReservarClick}>Reservar</Button>
              </Form>

@@ -9,6 +9,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import NavigationLinks from '../NavigationLinks';
+import CalendarioFuerza from './CalendarioDeClases/CalendarioFuerza';
 
 const StyledH1 = styled.h1`
   text-align: center;
@@ -145,41 +146,37 @@ const Form = styled.form`
 moment.locale('es');
 const localizer = momentLocalizer(moment);
 
+const events = [
+  {
+    start: moment().toDate(),
+    end: moment().add(1, "days").toDate(),
+    title: "Some title"
+  }
+];
+
 const messages = {
-  allDay: 'Todo el día',
-  previous: 'Anterior',
-  next: 'Siguiente',
-  today: 'Hoy',
-  month: 'Mes',
-  week: 'Semana',
-  day: 'Día',
-  agenda: 'Agenda',
-  date: 'Fecha',
-  time: 'Hora',
-  event: 'Evento',
-  showMore: total => `+ Ver más (${total})`,
-  noEventsInRange: 'No hay eventos en este rango',
-  showMore: total => `+ ${total} más`,
-  monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-  dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-  dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+  next: "Siguiente",
+  previous: "Anterior",
+  today: "Hoy",
+  month: "Mes",
+  week: "Semana",
+  day: "Día"
 };
+
 
 Modal.setAppElement('#root');
 
 function ReservarClaseFuerza () {
   const classes = ['Yoga', 'Fuerza', 'Pilates', 'Boxeo', 'Cardio'];
   const currentClassIndex = classes.indexOf('Fuerza');
-
-  const { register, handleSubmit, setValue } = useForm();
   const [showCalendar, setShowCalendar] = useState(false); 
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const { register, handleSubmit, setValue, getValues } = useForm();
+
 
   const navigate = useNavigate();
 
@@ -190,64 +187,26 @@ function ReservarClaseFuerza () {
     navigate('/PaginaUsuario');
   };
 
+  const onClassClick = (day, time, classType, instructor) => {
+    setSelectedDate({ day, time, classType, instructor }); // establece la clase seleccionada
+    setModalIsOpen(false); 
+  };
 
   const handleSelectEvent = event => {
-    setSelectedDate(event.start);
-    setModalIsOpen(false);
-    setShowCalendar(true);
+    console.log('Before setModalIsOpen: ', modalIsOpen);
+    setModalIsOpen(true);
+    console.log('After setModalIsOpen: ', modalIsOpen);
+  
+    console.log('Before setValue: ', getValues('date'));
     setValue('date', event.start);
+    console.log('After setValue: ', getValues('date'));
   };
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
     setShowCalendar(true);
   };
-  
-
-
-  // const onSubmit = data => {
-  //   console.log(data);
-  //   // Aquí puedes manejar la presentación del formulario, por ejemplo, enviando los datos a Firebase
-  // };
-
-  
-
-  const events = [];
-
-for (let week = 0; week < 52; week++) {
-  events.push(
-   
-    {
-      start: new Date(moment().weekday(2).add(week, 'weeks').year(), moment().weekday(2).add(week, 'weeks').month(), moment().weekday(2).add(week, 'weeks').date(), 8, 30), 
-      end: new Date(moment().weekday(2).add(week, 'weeks').year(), moment().weekday(2).add(week, 'weeks').month(), moment().weekday(2).add(week, 'weeks').date(), 9, 30), 
-      title: 'Total',
-    },
-
-    {
-      start: new Date(moment().weekday(4).add(week, 'weeks').year(), moment().weekday(4).add(week, 'weeks').month(), moment().weekday(4).add(week, 'weeks').date(), 8, 30), 
-      end: new Date(moment().weekday(4).add(week, 'weeks').year(), moment().weekday(4).add(week, 'weeks').month(), moment().weekday(4).add(week, 'weeks').date(), 9, 30), 
-      title: 'Resistencia',
-    },
-    {
-      start: new Date(moment().weekday(5).add(week, 'weeks').year(), moment().weekday(5).add(week, 'weeks').month(), moment().weekday(5).add(week, 'weeks').date(), 7, 0), 
-      end: new Date(moment().weekday(5).add(week, 'weeks').year(), moment().weekday(5).add(week, 'weeks').month(), moment().weekday(5).add(week, 'weeks').date(), 8, 0), 
-      title: 'Total del Cuerpo',
-    },
-
-    {
-        start: new Date(moment().weekday(5).add(week, 'weeks').year(), moment().weekday(5).add(week, 'weeks').month(), moment().weekday(5).add(week, 'weeks').date(), 12, 0),
-        end: new Date(moment().weekday(5).add(week, 'weeks').year(), moment().weekday(5).add(week, 'weeks').month(), moment().weekday(5).add(week, 'weeks').date(), 13, 0), 
-        title: 'Acondicionamiento',
-      },
-
-    {
-      start: new Date(moment().weekday(7).add(week, 'weeks').year(), moment().weekday(7).add(week, 'weeks').month(), moment().weekday(7).add(week, 'weeks').date(), 13, 0), 
-      end: new Date(moment().weekday(7).add(week, 'weeks').year(), moment().weekday(7).add(week, 'weeks').month(), moment().weekday(7).add(week, 'weeks').date(), 14, 0), 
-      title: 'Total del Cuerpo',
-    },
-  );
-}
-  
+    
   return (
     <> 
     <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
@@ -281,25 +240,40 @@ for (let week = 0; week < 52; week++) {
             </Button>
           <br />
           <br />
-            <StyledInput type="text" {...register('date')} readOnly />
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={() => setModalIsOpen(false)}
-                >
-              {showCalendar && (
-                <Calendar
-                  localizer={localizer}
-                  events={events}
-                  startAccessor="start"
-                  endAccessor="end"
-                  style={{ height: 500 }}
-                  views={['week', 'day']}
-                  defaultView='week'
-                  messages={messages}
-                  onSelectEvent={handleSelectEvent}
-                />
-              )}
-            </Modal>
+          <StyledInput type="text" value={selectedDate ? `${selectedDate.day} / ${selectedDate.time}/ ${selectedDate.classType}/ ${selectedDate.instructor}` : ''} readOnly />            
+          <Modal
+    isOpen={modalIsOpen}
+  onRequestClose={() => setModalIsOpen(false)}
+  style={{
+    content: {
+      padding: '0', // Elimina el padding
+      margin: 'auto', // Centra el modal
+      display: 'flex', // Asegura que el contenido se estira para llenar el espacio disponible
+      flexDirection: 'column', // Asegura que el contenido se estira en la dirección correcta
+      height: '70vh', // Ajusta la altura del modal al 60% de la altura de la ventana
+      width: '70vw', // Ajusta la anchura del modal al 60% de la anchura de la ventana
+      overflow: 'auto', // Añade barras de desplazamiento si el contenido es demasiado grande
+      position: 'absolute', // Permite centrar el modal
+      top: '90%', // Centra el modal verticalmente
+      left: '50%', // Centra el modal horizontalmente
+      transform: 'translate(-50%, -50%)', // Asegura que el modal está centrado
+    },
+  }}
+>
+  {showCalendar && (
+   <CalendarioFuerza
+   localizer={localizer}
+   events={events}
+   startAccessor="start"
+   endAccessor="end"
+   style={{ height: 200 }}
+   views={['week', 'day']}
+   defaultView='week'
+   messages={messages}
+   onClassClick={onClassClick}
+ />
+  )}
+</Modal>
             </StyledLabel>
             <Button type="submit" onClick={handleReservarClick}>Reservar</Button>
              </Form>

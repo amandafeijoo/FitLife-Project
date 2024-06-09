@@ -119,7 +119,7 @@ function Cardio() {
     <div>
           <NavigationLinks classes={classes} currentClassIndex={currentClassIndex} />
       <StyledH1>CARDIO</StyledH1>
-      <StyledLink to="/ReservarClase">
+      <StyledLink to="/ReservarClases/ReservarClaseCardio">
             <Button>Reservar Clase</Button>
           </StyledLink>
     <TopContainer>
