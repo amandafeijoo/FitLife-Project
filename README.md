@@ -1,10 +1,8 @@
 # FitLife
 
-Integrantes del proyecto :
+Integrante del proyecto :
 Amanda Cristina Flores Feijóo,
-Marina López Monterde,
-Alejandro Rivas Bustos,
-Alejandro Rodriguez Hernández
+
 
 
 El proyecto de la página  web del gimnasio “FitLife” tiene como objetivo principal proporcionar una plataforma en línea completa y accesible que satisfaga las necesidades de los clientes, mejorando su experiencia de membresía y promoviendo un estilo de vida saludable y activo.
