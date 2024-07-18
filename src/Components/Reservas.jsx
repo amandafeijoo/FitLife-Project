@@ -25,14 +25,22 @@ const StyledTable = styled.table`
     width: 100%;
     border-collapse: collapse;
 
-    th, td {
+    th {
+        font-size: 20px;  // Ajusta este valor al tamaño que prefieras
+        /* border: 1px solid #252525; */
+        padding: 50px;
+        text-align: center;
+        width: 10%;
+        border: 2px solid #36A2EB;
+     
+    }
 
+    td {
         border: 1px solid #252525;
         padding: 50px;
-        text-align: left;
+        text-align: center;
         width: 10%;
-        border: 2px solid #eceaea;
-       
+        border: 2px solid #4c4b4b;
     }
     
     tr:nth-child(even) {

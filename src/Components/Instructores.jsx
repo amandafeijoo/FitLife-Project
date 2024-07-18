@@ -59,24 +59,25 @@ const Card = styled.div`
 }
 `;
 
+
 const CardInner = styled.div`
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  transform: ${props => (props.isFlipped ? "rotateY(180deg)" : "rotateY(0)")};
+  transform: ${({ $isFlipped }) => ($isFlipped ? "rotateY(180deg)" : "rotateY(0deg)")};
 `;
 
 const CardFront = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  background-image: url(${props => props.image});
+  background-image: ${({ $image }) => `url(${$image})`};
   background-size: cover;
-  border-radius: 15px;
 `;
 
 const CardBack = styled.div`
@@ -114,8 +115,6 @@ const Button1 = styled.button`
     cursor: pointer;
 `;
 
-
-
 const FlippableCard = ({ instructor }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -126,8 +125,8 @@ const FlippableCard = ({ instructor }) => {
     <GlobalStyle />
     <CarouselContainer>
     <Card onClick={() => setIsFlipped(!isFlipped)}>
-      <CardInner isFlipped={isFlipped}>
-        <CardFront image={instructor.image} />
+    <CardInner $isFlipped={isFlipped}>
+      <CardFront $image={instructor.image} />
         <CardBack>
           {instructor.description.map((line, index) => (
             <p key={index}>{line}</p>
@@ -225,7 +224,7 @@ const Instructores = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2600,
+    autoplaySpeed: 2700,
     responsive: [
       {
         breakpoint: 1024,

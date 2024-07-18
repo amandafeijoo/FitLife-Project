@@ -153,29 +153,44 @@ const  navigate = useNavigate();
 const [reservas, setReservas] = useState([]);
 const [users, setUsers] = useState({});
 const [suscripcion, setSuscripcion] = useState({ 'Abono Básico': 0, 'Abono Premium': 0, 'Abono Gold': 0 });
-
-
+const [freeReservations, setFreeReservations] = useState([]);
+const [reservasGratuitas, setReservasGratuitas] = useState([]);
 
 
 useEffect(() => {
   fetch('http://localhost:3000/reservas/')
     .then(response => response.json())
-    .then(data => setReservas(data));
+    .then(data => {
+    setReservas(data);
+    })
+    .catch(error => console.error('Error:', error));
+
+  fetch('http://localhost:3000/reservas/free-class-user')
+    .then(response => response.json())
+    .then(data => {
+      setReservasGratuitas(data);
+    })
+    .catch(error => {
+      console.error('Error fetching free reservations:', error);
+    });
 }, []);
+
 
 const totalReservas = reservas.length;
 const reservasActivas = reservas.filter(reserva => reserva && !reserva.cancelada).length;
 const reservasCanceladas = reservas.filter(reserva => reserva && reserva.cancelada).length;
+const numReservasGratuitas = reservasGratuitas.length; // Aquí obtenemos la longitud del array de reservas gratuitas
 
 const porcentajeActivas = (reservasActivas / totalReservas) * 100;
 const porcentajeCanceladas = (reservasCanceladas / totalReservas) * 100;
+const porcentajeGratuitas = (numReservasGratuitas / totalReservas) * 100; // Usamos numReservasGratuitas aquí
 
 const data = {
-  labels: ['Reservas Activas', 'Reservas Canceladas', 'Reservas Eliminadas'],
+  labels: ['Reservas Activas', 'Reservas Canceladas', 'Reservas Gratuitas', 'Reservas Eliminadas'],
   datasets: [
     {
-      data: [porcentajeActivas, porcentajeCanceladas, 100 - porcentajeActivas - porcentajeCanceladas],
-      backgroundColor: ['#36A2EB', '#FF6384', '#909a93'],
+      data: [reservasActivas, reservasCanceladas, numReservasGratuitas, totalReservas - reservasActivas - reservasCanceladas - numReservasGratuitas],
+      backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56', '#909a93'],
       borderWidth: 1,
       borderColor: '#909a93',
       borderStyle: 'solid',
@@ -250,7 +265,7 @@ useEffect(() => {
     const suscripcion = { 'Abono Básico': 0, 'Abono Platinum': 0, 'Abono Gold': 0 };
 
     for (const reserva of reservas) {
-      if (!newUsers[reserva.user]) {
+      if (reserva.user && !newUsers[reserva.user]) {
         const user = await fetchWithAuth(`http://localhost:3000/users/${reserva.user}`);
         newUsers[reserva.user] = user;
         suscripcion[user.suscripcion]++; 
@@ -433,7 +448,7 @@ const renderTooltip = (props) => (
   </thead>
   <tbody>
     {reservas.map((reserva, index,) => {
-      const { clase, subClase, instructor, _id, cancelada, user} = reserva;
+      const { clase, subClase, instructor, _id, cancelada, user, isFree} = reserva;
       const instructorName = instructor ? instructor.nombre : 'No instructor';
       const estado = cancelada ? 'Cancelada' : 'Activa';
       
@@ -457,9 +472,13 @@ const renderTooltip = (props) => (
               <Celda>{subClase.nombre || 'No subclase name'}</Celda>
               <Celda>{instructorName}</Celda>
               <Celda>
-              <OverlayTrigger overlay={tooltip} placement="right" delay={{ show: 250, hide: 800 }}>
-                <span>{user}</span>
-              </OverlayTrigger>
+              {user ? (
+                <OverlayTrigger overlay={tooltip} placement="right" delay={{ show: 250, hide: 800 }}>
+                  <span>{`${users[user]?.nombre} ${users[user]?.apellidos}`}</span>
+                </OverlayTrigger>
+              ) : (
+                <span>{isFree ? `${reserva.nombre} (${reserva.correo}, ${reserva.telefono})` : 'No user'}</span>
+              )}
               </Celda>
               <Celda>{estado}</Celda>
               <Celda>
@@ -479,7 +498,27 @@ const renderTooltip = (props) => (
     })}
   </tbody>
 </Tabla>
-
+<StyledH2>Reservas Gratuitas</StyledH2>
+<Tabla>
+    <thead>
+      <tr>
+        <th>Nombre de la clase</th>
+        <th>Instructor</th>
+        <th>Especialidad</th>
+        <th>Es gratuita</th>
+      </tr>
+    </thead>
+    <tbody>
+      {reservasGratuitas.map((reserva) => (
+        <Fila key={reserva._id}>
+          <Celda>{reserva.subClase.nombre}</Celda>
+          <Celda>{reserva.instructor.nombre}</Celda>
+          <Celda>{reserva.instructor.especialidad}</Celda>
+          <Celda>{reserva.isFree ? 'Sí' : 'No'}</Celda>
+        </Fila>
+      ))}
+    </tbody>
+  </Tabla>
 
     <StyledH2>Gestión de Clases Específicas</StyledH2>
     <ContenedorBoton>
@@ -521,15 +560,16 @@ const renderTooltip = (props) => (
         <Doughnut data={chartData} options={options} />
     </div>
 </div>
-    <ContenedorBoton>
-  <Button onClick={actualizarDatos}>Actualizar datos</Button>   
-</ContenedorBoton>
-<Tabla>
+   
+    <StyledH2>Usuarios Activos</StyledH2>
+    <Tabla>
   <thead>
     <tr>
       <th>Suscripción</th>
       <th>Nombre</th>
-      <th>Fecha de Alta</th>
+      <th>Apellidos</th>
+      <th>Correo</th>
+      <th>Fecha de Registro</th>
     </tr>
   </thead>
   <tbody>
@@ -537,13 +577,15 @@ const renderTooltip = (props) => (
       <Fila key={index}>
         <Celda>{user.suscripcion}</Celda>
         <Celda>{user.nombre}</Celda>
-        <Celda>{user.fechaAlta}</Celda>
+        <Celda>{user.apellidos}</Celda>
+        <Celda>{user.correo}</Celda>
+        <Celda>{new Date(user.fechaRegistro).toLocaleDateString()}</Celda>
       </Fila>
     ))}
   </tbody>
 </Tabla>
-    <Button1 onClick={cerrarSesion}>Cerrar Sesión</Button1>
-  </StyledPage>
+<Button1 onClick={cerrarSesion}>Cerrar Sesión</Button1>
+</StyledPage>
     
   );
 }

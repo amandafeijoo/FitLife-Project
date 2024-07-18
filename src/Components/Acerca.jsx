@@ -65,9 +65,9 @@ function Acerca() {
     <div>
       <MainContainer>
       <SpotifyContainer>
-      <StyledIcon size={50} />
+      <StyledIcon size={70} />
         <StyledH1>¡Escucha nuestra playlist en Spotify!</StyledH1>
-      <iframe src="https://open.spotify.com/embed/playlist/72RH0j72MuBRTMDIpvFFjA?si=57976c1069ce412c" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <iframe src="https://open.spotify.com/embed/playlist/72RH0j72MuBRTMDIpvFFjA?si=57976c1069ce412c" width="320" height="470" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       </SpotifyContainer>
       <ClaseGratuita/> 
       </MainContainer>
