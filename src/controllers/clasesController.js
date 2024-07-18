@@ -57,6 +57,28 @@ exports.getClases = async (req, res) => {
     }
 };
 
+exports.getSubclases = async (req, res) => {
+  try {
+    // Obtiene todas las clases de la base de datos
+    const classes = await Class.find();
+
+    // Crea un array para almacenar todas las subclases
+    let subclases = [];
+
+    // Itera sobre todas las clases
+    for (let clase of classes) {
+      // Añade las subclases de la clase actual al array de subclases
+      subclases = subclases.concat(clase.subclases);
+    }
+
+    // Envía las subclases como respuesta
+    res.json(subclases);
+  } catch (error) {
+    // Si ocurre un error, envía un mensaje de error
+    res.status(500).json({ message: 'Error al obtener las subclases' });
+  }
+};
+
 
 exports.getSubclase = async (req, res) => {
   try {

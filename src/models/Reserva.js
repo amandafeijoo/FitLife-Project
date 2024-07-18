@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const reservationSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   clase: { type: mongoose.Schema.Types.ObjectId, ref: 'Class' },
+  isFree: { type: Boolean, default: false },
   subClase: {
     nombre: String,
     horarios: [{
@@ -12,7 +13,7 @@ const reservationSchema = new mongoose.Schema({
       maxCapacity: Number,
       _id: mongoose.Schema.Types.ObjectId
     }],
-    // other fields...
+   
   },
   instructor: {
     _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Instructor' },

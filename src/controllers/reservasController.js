@@ -70,10 +70,7 @@ exports.createReserva = async (req, res) => {
       return res.status(404).json({ error: 'Usuario o clase no encontrados' });
     }
 
-    // const fechaDate = new Date(fecha);
-    
-    // const horaDate = new Date(`1970-01-01T${hora}:00`); // Asume que 'hora' es una cadena de texto en el formato 'HH:mm'
-
+   
     const reserva = new Reservation({
       user: userId,
       clase: claseId,
@@ -122,8 +119,6 @@ exports.createReserva = async (req, res) => {
 };
 
 
-
-
 exports.obtenerReservas = async (req, res) => {
   try {
     const reservas = await Reservation.find();
@@ -133,21 +128,28 @@ exports.obtenerReservas = async (req, res) => {
   }
 };
 
- 
 
+exports.getReserva = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reserva = await Reservation.findById(id);
+    if (!reserva) {
+      return res.status(404).json({ error: 'Reserva no encontrada' });
+    }
 
-  exports.getReserva = async (req, res) => {
-      try {
-        const { id } = req.params;
-        const reserva = await Reservation.findById(id);
-        if (!reserva) {
-          return res.status(404).json({ error: 'Reserva no encontrada' });
-        }
-        res.status(200).json(reserva);
-      } catch (error) {
-        res.status(500).json({ error: error.message });
+    let user = null;
+    if (reserva.userId) {
+      user = await User.findById(reserva.userId);
+      if (!user) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
       }
-    };
+    }
+
+    res.status(200).json({ reserva, user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 
 exports.updateReserva = async (req, res) => {

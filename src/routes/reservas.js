@@ -18,13 +18,14 @@ router.get('/instructores/name/:name', instructoresController.getInstructorByNam
 router.post('/clases', authenticate, clasesController.createClase);
 router.get('/clases', clasesController.getClases);
 router.get('/clases/:id', clasesController.getClase);
+router.get('/subclases', clasesController.getSubclases);
 router.get('/subclases/:id', clasesController.getSubclase);
 router.put('/subclases/:id', authenticate, clasesController.updateSubclase);
 router.put('/clases/:id', authenticate, clasesController.updateClase);
 router.delete('/clases/:id', authenticate, clasesController.deleteClase);
 router.delete('/clases', authenticate, clasesController.deleteAllClasses); 
 router.delete('/clases/:id/subclases', authenticate, clasesController.deleteAllSubclases);
-router.get('/clases/nombre/:name', clasesController.getClaseByName); // Cambiado aquí
+router.get('/clases/nombre/:name', clasesController.getClaseByName); 
 router.get('/reservas/subclases/nombre/:name', clasesController.getSubclaseByName);
 // Rutas para obtener las clases por tipo
 router.get('/clases/tipo/:tipo', clasesController.getClasesPorTipo);
@@ -33,8 +34,10 @@ router.get('/clases/tipo/:tipo', clasesController.getClasesPorTipo);
 router.get('/clases/:id/disponibilidad', reservasController.getDisponibilidad);
 router.get('/clasesDisponibles', reservasController.clasesDisponibles);
 
+
 // Rutas para clases gratuitas 
-router.post('/free-class-user', authenticate, freeClassController.createFreeClass);
+router.post('/free-class-user', freeClassController.createFreeClass);
+router.get('/free-class-user', freeClassController.getAllFreeClasses);
 router.get('/free-class-user/:id', freeClassController.getFreeClass);
 router.put('/free-class-user/:id', authenticate, freeClassController.updateFreeClass);
 router.delete('/free-class-user/:id', authenticate, freeClassController.deleteFreeClass);
@@ -46,14 +49,14 @@ router.post('/', reservasController.createReserva);
 // Ruta para obtener todas las reservas
 router.get('/', reservasController.obtenerReservas);
 
-// Ruta para obtener las reservas del usuario autenticado
-router.get('/reservas/:userId', authenticate, reservasController.getReservasUsuario);
-
-// Ruta para obtener una reserva por ID
+// Asegúrate de que esta ruta se registre después de las rutas para '/reservas/free-class-user' y '/reservas/:userId'
 router.get('/:id', reservasController.getReserva);
 router.put('/:id', reservasController.updateReserva);
 router.delete('/:id', reservasController.deleteReserva);
 router.put('/cancelar/:id', reservasController.cancelarReserva);
+
+// Ruta para obtener las reservas del usuario autenticado
+router.get('/reservas/:userId', authenticate, reservasController.getReservasUsuario);
 
 
 module.exports = router;

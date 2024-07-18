@@ -22,14 +22,24 @@ const FreeClassSchema = new mongoose.Schema({
     ref: 'Class',
     required: true,
   },
-  fechaHora: {
-    type: Date,
+  dias: {
+    type: [String],
+    required: true,
+  },
+  horario: {
+    type: String,
     required: true,
   },
   reservacion: {
   type: mongoose.Schema.Types.ObjectId,
   ref: 'Reserva'
+},
+isFree: {
+  type: Boolean,
+  default: false
 }
+}, {
+  timestamps: true,
 });
 
 module.exports = mongoose.model('FreeClass', FreeClassSchema);

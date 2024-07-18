@@ -18,14 +18,19 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-async function sendReservationEmail(userId, className, reservationDate, reservationTime, message = '') {
-  const user = await User.findById(userId);
-  const userName = `${user.nombre} ${user.apellidos}`;
+async function sendReservationEmail(userId, email, userName, className, reservationDate, reservationTime, message = '') {
+  if (userId) {
+    const user = await User.findById(userId);
+    if (user) {
+      email = user.correo;
+      userName = `${user.nombre} ${user.apellidos}`;
+    }
+  }
 
   let mailOptions = {
     from: 'fitlife.uem@gmail.com',
-    to: user.correo,
-    subject: 'Actualización de la reserva',
+    to: email,
+    subject: 'Tu reserva',
     text: `Hola ${userName},\n\nGracias por elegir FitLife Gym. ${message} Los detalles de tu reserva son los siguientes:\n\nClase: ${className}\nFecha: ${reservationDate}\nHora: ${reservationTime}\n\nSaludos,\nEl equipo de FitLife Gym`
   };
 
@@ -38,11 +43,15 @@ async function sendReservationEmail(userId, className, reservationDate, reservat
   });
 }
 
-async function sendSms(userId, className, reservationDate, reservationTime, message = '') {
+async function sendSms(userId, phoneNumber, userName, className, reservationDate, reservationTime, message = '') {
   try {
-    const user = await User.findById(userId);
-    const userName = `${user.nombre} ${user.apellidos}`;
-    const phoneNumber = user.countryCode + user.telefono;
+    if (userId) {
+      const user = await User.findById(userId);
+      if (user) {
+        phoneNumber = user.countryCode + user.telefono;
+        userName = `${user.nombre} ${user.apellidos}`;
+      }
+    }
 
     await client.messages.create({
       body: `Hola ${userName},\n\nGracias por elegir FitLife Gym. ${message} Los detalles de tu reserva son los siguientes:\n\nClase: ${className}\nFecha: ${reservationDate}\nHora: ${reservationTime}\n\nSaludos,\nEl equipo de FitLife Gym`,
