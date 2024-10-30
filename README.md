@@ -1,6 +1,6 @@
 # FitLife
 
-Integrante del proyecto :
+Directora del proyecto :
 Amanda Cristina Flores Feijóo,
 
 
